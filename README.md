@@ -15,7 +15,7 @@ Repositório destinado ao armazenamento de arquivos gerados na disciplina de pro
 Tenho interesse em trabalhar no desenvolvimento back-end, com foco no desenvolvimento de API.
 
 ## Portfólio
-nada de interessante a mostrar
+Vazio
 
 ## Outras coisas que julgue interessantes
-nada a declarar
+Programação front-end, foco em frameworks como React
