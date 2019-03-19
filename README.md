@@ -15,7 +15,7 @@ Repositório destinado ao armazenamento de arquivos gerados na disciplina de pro
 Tenho interesse em trabalhar no desenvolvimento back-end, com foco no desenvolvimento de API.
 
 ## Portfólio
-Vazio
+[Pocket Coin - POO](https://github.com/PedroHenriqueDevBR/App-Pocket-Coin)
 
 ## Outras coisas que julgue interessantes
 Programação front-end, foco em frameworks como React
