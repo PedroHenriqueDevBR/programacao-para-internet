@@ -7,14 +7,13 @@ Repositório destinado ao armazenamento de arquivos gerados na disciplina de pro
 ## Habilidades
 * HTML 5 
 * CSS 3
-* Javascript (NodeJS) (Express)
-* Django (Conhecimento básico)
-* Flask (Conhecimento básico)
+* Javascript
+* Java
 
 ## Interesses acadêmicos e profissionais
 Tenho interesse em trabalhar no desenvolvimento back-end, com foco no desenvolvimento de API.
 
-## Portfólio
+## Melhor Projeto
 [Pocket Coin - POO](https://github.com/PedroHenriqueDevBR/App-Pocket-Coin)
 
 ## Outras coisas que julgue interessantes
