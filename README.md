@@ -11,7 +11,9 @@ Repositório destinado ao armazenamento de arquivos gerados na disciplina de pro
 * Java
 
 ## Interesses acadêmicos e profissionais
-Tenho interesse em trabalhar no desenvolvimento back-end, com foco no desenvolvimento de API.
+* Desenvolvimento back-end, com foco no desenvolvimento de API.
+* Desenvolvimento front-end
+* Desenvolvimeno android
 
 ## Melhor Projeto
 [Pocket Coin - POO](https://github.com/PedroHenriqueDevBR/App-Pocket-Coin)
