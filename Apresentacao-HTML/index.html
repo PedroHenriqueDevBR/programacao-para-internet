@@ -35,10 +35,70 @@
             <h1>File Paths</h1>
             <p>
                 File Path - Caminho de arquivo. Contextualizando, o file path refere-se ao caminho necessário para que
-                um
-                arquivo possa
-                ser acessado por uma página, como no exemplo abaixo.
+                um arquivo possa ser acessado por uma página, como no exemplo abaixo.
             </p>
+
+            <table border="1px">
+                <thead>
+                    <tr>
+                        <th width="50%">path</th>
+                        <th width="50%">Descrição</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <!-- escape html - &lt; path &gt; -->
+                        <td> <pre class="estlizacao-img"> &lt; img src="picture.jpg" &gt; </pre> </td>
+                        <td>arquivo está localizado na mesma pasta que a página atual</td>
+                    </tr>
+
+                    <tr>
+                        <td> <pre class="estlizacao-img"> &lt; img src="images/picture.jpg" &gt; </pre> </td>
+                        <td>arquivo localizado na pasta chamada imagem, onde a pasta imagem está localizada na mesma
+                            pasta da página atual.</td>
+                    </tr>
+
+                    <tr>
+                        <td> <pre class="estlizacao-img"> &lt; img src="/images/picture.jpg" &gt; </pre> </td>
+                        <td>arquivo localizado na pasta imagem, pasta imagem localizada na pasta raiz do projeto.</td>
+                    </tr>
+
+                    <tr>
+                        <td> <pre class="estlizacao-img"> &lt; img src="../picture.jpg" &gt; </pre> </td>
+                        <td>arquivo localizado na pasta um nível acima da pasta atual</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <hr>
+
+            <h2>Absolute File Path X Relative File Path</h2>
+            <p>
+                Um caminho de arquivo absoluto é utilizado para acessar um arquivo na internet, por meio de uma url,
+                como no exemplo
+                abaixo: <br><br>
+                <pre class="estlizacao-img"> &lt; img src="https://www.w3schools.com/images/picture.jpg" alt="Mountain" &gt; </pre>
+                <br><br><br>
+            </p>
+
+            <p>
+                Um Caminho de arquivo relativo é utilizado para acessar um arquivo que está localizado em uma pasta
+                relativa a página atual, como exemplo. <br><br>
+                <pre class="estlizacao-img"> &lt; img src="/images/picture.jpg" alt="Mountain" &gt; </pre>
+            </p>
+
+            <h2> Boas práticas </h2>
+            <p> Uma boa prática é utilizar sempre que possível o caminho de arquivo relativo. </p>
+
+            <h2> Mão na massa </h2>
+            <p> 
+                Apresentação da utilização do file path em projetos reais. Levarei em consideração a arvore de diretórios abaixo, 
+                para que os exemplo possa ser apresentados<br><br> 
+            </p>
+
+            <img src="imagem/file-tree.png" alt="File tree">
+
         </section>
 
         <section id="head">
@@ -62,8 +122,9 @@
     <footer>
         <h1>Referências</h1>
         <ul>
-            <li> <a href="https://www.w3schools.com/html/default.asp">w3schools -
-                    https://www.w3schools.com/html/default.asp</a> </li>
+            <li> <a href="https://www.w3schools.com/html/default.asp">w3schools - https://www.w3schools.com/html/default.asp</a> </li>
+            <li> <a href="https://www.kirupa.com/html5/all_about_file_paths.htm">Kirupa - https://www.kirupa.com/html5/all_about_file_paths.htm</a> </li>
+            <li> <a href="https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/Dealing_with_files">Deleveloper Mozilla - https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/Dealing_with_files</a> </li>
         </ul>
     </footer>
 

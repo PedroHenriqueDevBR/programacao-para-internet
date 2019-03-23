@@ -27,6 +27,7 @@ header {
     position: fixed;
     left: 0;
     top: 0;
+    box-shadow: 0 0 20px #B0BEC5;
 }
 
 nav li {
@@ -55,7 +56,13 @@ section {
 }
 
 section p {
+    text-indent: 2.5em;
     font-size: auto;
+}
+
+section hr {
+    color: #fff;
+    margin: 50px 0;
 }
 
 #config {
@@ -96,9 +103,52 @@ section p {
     font-size: 1em; 
 }
 
-section h1 {
+h1, h2 {
     text-align: center;
-    margin: 10px 0;
+    margin: 20px 0;
+}
+
+h1::after, h2::after {
+    content: "";
+    display: block;
+    margin: 10px auto 25px auto;
+    width: 25%;
+    height: 3px;
+    background: #B0BEC5;
+}
+
+.estlizacao-img {
+    color: #f44336;
+    font-weight: bold;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    border: 1px solid #666;
+    margin-top: 20px;
+}
+
+table th {
+    background: #212121;
+    color: #fff;
+}
+
+table td, table th {
+    padding: 5px 2px;
+    text-align: center;
+}
+
+table tr:nth-child(even) {
+    background: #eee;
+}
+
+table tr:hover {
+    background: #E8EAF6;
+}
+
+table td:hover {
+    background: #E1F5FE;
 }
 
 footer {
