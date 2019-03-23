@@ -7,6 +7,22 @@
     font-family: sans-serif;
 }
 
+a {
+    color: #263238;
+}
+
+img {
+    margin: 15px 0;
+}
+
+p {
+    line-height: 1.45em;
+}
+
+.full-width {
+    width: 100%;
+}
+
 body, html {
     min-height: 100%;
 }
@@ -27,7 +43,7 @@ header {
     position: fixed;
     left: 0;
     top: 0;
-    box-shadow: 0 0 20px #B0BEC5;
+    /* box-shadow: 0 0 20px #B0BEC5; */
 }
 
 nav li {
@@ -153,6 +169,7 @@ table td:hover {
 
 footer {
     width: 80%;
+    height: 100vh;
     float: right;
     padding: 25px;
     background: #263238;
@@ -167,4 +184,9 @@ footer li {
 footer a {
     color: #fff;
     margin: 5px;
+}
+
+footer a:visited {
+    color: #03A9F4;
+    text-decoration: line-through;
 }

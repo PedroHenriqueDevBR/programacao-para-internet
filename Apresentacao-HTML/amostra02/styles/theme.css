@@ -1,0 +1,26 @@
+body {
+    text-align: center;
+    /* background-image: url('');
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover; */
+}
+
+header {
+    background: #FF5722;
+    padding: 5px 25px;
+    color: #fff;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header img {
+    width: 100px;
+}
+
+section img {
+    margin: 50px 0;
+}

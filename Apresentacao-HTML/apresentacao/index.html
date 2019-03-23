@@ -18,6 +18,7 @@
                 <li><a href="#file-path">File Paths</a></li>
                 <li><a href="#head">Head</a></li>
                 <li><a href="#layout">Layouts</a></li>
+                <li><a href="#referencias">Referências</a></li>
             </ul>
         </nav>
     </header>
@@ -38,11 +39,11 @@
                 um arquivo possa ser acessado por uma página, como no exemplo abaixo.
             </p>
 
-            <table border="1px">
+            <table>
                 <thead>
                     <tr>
-                        <th width="50%">path</th>
-                        <th width="50%">Descrição</th>
+                        <th>path</th>
+                        <th>Descrição</th>
                     </tr>
                 </thead>
 
@@ -78,36 +79,85 @@
                 Um caminho de arquivo absoluto é utilizado para acessar um arquivo na internet, por meio de uma url,
                 como no exemplo
                 abaixo: <br><br>
-                <pre class="estlizacao-img"> &lt; img src="https://www.w3schools.com/images/picture.jpg" alt="Mountain" &gt; </pre>
+                <pre class="estlizacao-img"> &lt; img src="https://www.w3schools.com/images/picture.jpg" &gt; </pre>
                 <br><br><br>
             </p>
 
             <p>
                 Um Caminho de arquivo relativo é utilizado para acessar um arquivo que está localizado em uma pasta
                 relativa a página atual, como exemplo. <br><br>
-                <pre class="estlizacao-img"> &lt; img src="/images/picture.jpg" alt="Mountain" &gt; </pre>
+                <pre class="estlizacao-img"> &lt; img src="/images/picture.jpg" &gt; </pre>
             </p>
 
             <h2> Boas práticas </h2>
             <p> Uma boa prática é utilizar sempre que possível o caminho de arquivo relativo. </p>
 
-            <h2> Mão na massa </h2>
-            <p> 
-                Apresentação da utilização do file path em projetos reais. Levarei em consideração a arvore de diretórios abaixo, 
-                para que os exemplo possa ser apresentados<br><br> 
+            <h2 id="tituloexemplo"> Mão na massa </h2>
+            <p>
+                Apresentação da utilização do file path em projetos reais. Levarei em consideração a arvore de
+                diretórios abaixo,
+                para que os exemplo possa ser apresentados<br><br>
             </p>
 
             <img src="imagem/file-tree.png" alt="File tree">
 
         </section>
 
+        <!-- Apresentação da tag head -->
         <section id="head">
             <h1>Head</h1>
             <p>
-                Contextualizando, a tag head é utilizada para carregar os metadados da página e definir informações, que
-                fica entre as
-                tags html e antes da tag body. Abaixo irei listar exemplos de metadados:
+                Contextualizando, a tag head é utilizada para carregar os metadados da página e definir informações que
+                serão importantes para motores de buscas,
+                e para o corpo do projeto. A tag é localizada dentro da tag html antes da tag body, como na imagem
+                abaixo.
             </p>
+
+            <img src="imagem/head.png" alt="localização da tag head" class="full-width">
+
+            <p>Abaixo irei listar exemplos de metadados:</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tag</th>
+                        <th>Função</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td> <pre class="estlizacao-img"> &lt; title &gt; </pre> </td>
+                        <td> Refere-se ao título da página </td>
+                    </tr>
+
+                    <tr>
+                        <td> <pre class="estlizacao-img"> &lt; style &gt; </pre> </td>
+                        <td> Refere-se a estilização da página </td>
+                    </tr>
+
+                    <tr>
+                        <td> <pre class="estlizacao-img"> &lt; meta &gt; </pre> </td>
+                        <td> Refere-se a informações sobre a página, informações que serão utilizados pelos motores de busca. </td>
+                    </tr>
+
+                    <tr>
+                        <td> <pre class="estlizacao-img"> &lt; link &gt; </pre> </td>
+                        <td> utilizado para refenciar folhas de estilo externas </td>
+                    </tr>
+
+                    <tr>
+                        <td> <pre class="estlizacao-img"> &lt; script &gt; </pre> </td>
+                        <td> Define o script no lado do cliente </td>
+                    </tr>
+
+                    <tr>
+                        <td> <pre class="estlizacao-img"> &lt; base &gt; </pre> </td>
+                        <td> Define uma url como base para os caminhos relativos. </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>Mão no código</h2>
+            <p>Vamos construir uma página, tentaremos fazer com que esta página seja encontrada de pelos navegadores.</p>
         </section>
 
         <section id="layout">
@@ -119,12 +169,18 @@
         </section>
     </div>
 
-    <footer>
+    <footer id="referencias">
         <h1>Referências</h1>
         <ul>
-            <li> <a href="https://www.w3schools.com/html/default.asp">w3schools - https://www.w3schools.com/html/default.asp</a> </li>
-            <li> <a href="https://www.kirupa.com/html5/all_about_file_paths.htm">Kirupa - https://www.kirupa.com/html5/all_about_file_paths.htm</a> </li>
-            <li> <a href="https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/Dealing_with_files">Deleveloper Mozilla - https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/Dealing_with_files</a> </li>
+            <li> <a href="https://www.w3schools.com/html/default.asp">w3schools -
+                    https://www.w3schools.com/html/default.asp</a> </li>
+            <li> <a href="https://www.kirupa.com/html5/all_about_file_paths.htm">Kirupa -
+                    https://www.kirupa.com/html5/all_about_file_paths.htm</a> </li>
+            <li> <a
+                    href="https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/Dealing_with_files">Deleveloper
+                    Mozilla -
+                    https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/Dealing_with_files</a>
+            </li>
         </ul>
     </footer>
 
