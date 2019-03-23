@@ -1,0 +1,120 @@
+* {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    text-decoration: none;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+body, html {
+    min-height: 100%;
+}
+
+body {
+    background-color: #ECEFF1;
+}
+
+header {
+    width: 20%;
+    float: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #fff;
+    position: fixed;
+    left: 0;
+    top: 0;
+}
+
+nav li {
+    padding: 10px;
+    font-size: 2em;
+}
+
+.conteudo {
+    width: 80%;
+    float: right;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+section {
+    width: 80%;
+    background: #fff;
+    min-height: 80vh;
+    margin: 25px 0;
+    border-radius: 10px;
+    box-shadow: 0 0 20px #B0BEC5;
+    padding: 2%;
+    font-size: 12pt;
+}
+
+section p {
+    font-size: auto;
+}
+
+#config {
+    min-height: auto;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#config button {
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    border: none;
+    color: #ECEFF1;
+    margin: 2px;
+}
+
+#increment {
+    background: #03A9F4;
+}
+
+#increment:hover {
+    background: #4FC3F7;
+}
+
+#decrement{
+    background: #f44336;
+}
+
+#decrement:hover{
+    background: #E57373;
+}
+
+#config p {
+    font-size: 1em; 
+}
+
+section h1 {
+    text-align: center;
+    margin: 10px 0;
+}
+
+footer {
+    width: 80%;
+    float: right;
+    padding: 25px;
+    background: #263238;
+    color: #fff;
+}
+
+footer li {
+    list-style: disc;
+    margin: 10px;
+}
+
+footer a {
+    color: #fff;
+    margin: 5px;
+}
