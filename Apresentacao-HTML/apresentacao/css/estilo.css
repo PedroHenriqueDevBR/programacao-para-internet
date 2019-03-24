@@ -47,7 +47,6 @@ header {
     position: fixed;
     left: 0;
     top: 0;
-    /* box-shadow: 0 0 20px #B0BEC5; */
 }
 
 nav li {
@@ -110,6 +109,7 @@ section hr {
 
 #showMenu{
     background: #E57373;
+    display: none;
 }
 
 #hideMenu{
