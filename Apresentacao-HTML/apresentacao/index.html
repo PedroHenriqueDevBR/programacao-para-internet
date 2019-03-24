@@ -25,10 +25,16 @@
 
     <div class="conteudo">
 
-        <section id="config">
-            <p id="font-config">Tamanho da fonte</p>
+        <section id="config" class="auto-height">
             <div>
-                <button id="increment">+</button><button id="decrement">-</button>
+                <button id="hideMenu">&lt;</button>
+                <button id="showMenu">&gt;</button>
+            </div>
+            <div>
+                <button id="layoutmore">L+</button>
+                <button id="layoutless">L-</button>
+                <button id="increment">F+</button>
+                <button id="decrement">F-</button>
             </div>
         </section>
 
@@ -120,7 +126,7 @@
                 <thead>
                     <tr>
                         <th>Tag</th>
-                        <th>Função</th>
+                        <th>Descrição</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -141,7 +147,7 @@
 
                     <tr>
                         <td> <pre class="estlizacao-img"> &lt; link &gt; </pre> </td>
-                        <td> utilizado para refenciar folhas de estilo externas </td>
+                        <td> utilizado para referenciar folhas de estilo externas </td>
                     </tr>
 
                     <tr>
@@ -160,12 +166,135 @@
             <p>Vamos construir uma página, tentaremos fazer com que esta página seja encontrada de pelos navegadores.</p>
         </section>
 
+        <!-- Apresentação do conteúdo layout -->
         <section id="layout">
             <h1>Layouts</h1>
             <p>
                 Contextualizando, layout é utilizado para organizar o conteúdo da página se forma semântica.
-                o HTML5 possui elementos semanticos que definem partes de uma página, como no exemplo abaixo.
+                o HTML5 possui elementos semânticos que definem partes de uma página, como no exemplo abaixo.
             </p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tag</th>
+                        <th>Descrição</th>
+                    </tr>
+                </thead>
+            
+                <tbody>
+                    <tr>
+                        <!-- escape html - &lt; path &gt; -->
+                        <td>
+                            <pre class="estlizacao-img"> &lt; header &gt; </pre>
+                        </td>
+                        <td>Define um cabeçalho para o documento ou section</td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <pre class="estlizacao-img"> &lt; nav &gt; </pre>
+                        </td>
+                        <td>Define um container para navegação de links</td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <pre class="estlizacao-img"> &lt; section &gt; </pre>
+                        </td>
+                        <td>Define uma seção no documento</td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <pre class="estlizacao-img"> &lt; article &gt; </pre>
+                        </td>
+                        <td>Define um container artigo independente</td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <pre class="estlizacao-img"> &lt; aside &gt; </pre>
+                        </td>
+                        <td>Define conteúdo alternativo a página</td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <pre class="estlizacao-img"> &lt; footer &gt; </pre>
+                        </td>
+                        <td>Define um rodapé para o documento ou página</td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <pre class="estlizacao-img"> &lt; details &gt; </pre>
+                        </td>
+                        <td>Define detalhes adicionais</td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <pre class="estlizacao-img"> &lt; summary &gt; </pre>
+                        </td>
+                        <td>Define um cabeçalho para o elemento &lt;details&gt;</td>
+                    </tr> 
+                </tbody>
+            </table>
+            
+            <h2>HTML técnicas de layout</h2>
+            <p>
+                A organização do layout de uma página é muito importante, não apenas para pessoas que irão utilizar-lo, mas também para
+                motores de busca, pois uma página bem organizada facilita a busca por algum item específico. Como exemplo vamos utilizar
+                a tag div, a tag div é utilizada muito, as vezes de forma discriminada, isso faz com que os motores de busca quando
+                forem buscar uma área de navegação por exemplo tenha dificuldades em encontrar, isso seria facilmente resolvido com a
+                utilização da tag nav.
+            </p>
+            <p>
+                Podemos organizar uma página com o auxílio do CSS de forma simples, bastando para isso o conhecimento de uma das
+                técnicas abaixo.
+            </p>
+
+            <ul class="lista-de-tecnicas">
+                <li>HTML tables</li>
+                <li>CSS float property</li>
+                <li>CSS flexbox</li>
+                <li>CSS grid</li>
+                <li>CSS framework</li>
+            </ul>
+
+            <h3>HTML tables</h3>
+            <p>
+                Muito utilizado antes que houvesse formas mais elaboradas de construir um design, hoje porém é é uma má prática
+                fazer o design de uma página utilizando tables, pois o table foi desenvolvido com o objetivo de criar dados
+                tabulados e não design de páginas.
+            </p>
+
+            <h3>CSS float property</h3>
+            <p>
+                a propriedade float é simples de se utilizada, você só precisa entender como a propriedade funciona e aplicar em
+                páginas, porém há desvantagem na propriedade float, pois os elementos que receberem essa propriedade estarão vinculados
+                ao fluxo do documento, podendo muitas das vezes fazer com que o layout “quebre”, causando uma experiência ruim no
+                usuário que utilizar a página.
+            </p>
+
+            <h3>CSS flexbox</h3>
+            <p>
+                Adicionado ao CSS3 a propriedade flexbox facilita a vida de desenvolvedores front-end, por meio da criação de um layout
+                flexível, que pode se adaptar a tela do usuário. Desvantagem, não finciona corretamente no IE10.
+            </p>
+
+            <h3>CSS grid</h3>
+            <p>
+                Disponibiliza ao desenvolvedor front-end a capacidade de desenvolver páginas utilizando o conceito de linhas e colunas,
+                sem a necessidade da utilização de flutuadores e posicionamento. Desvantagem, não funciona corretamente no IE.
+            </p>
+
+            <h3>CSS Frameworks</h3>
+            <p>
+                Possui a proposta facilitar o desenvolvimento de páginas web, o mais famoso Framework CSS é o Bootstrap.
+            </p>
+
         </section>
     </div>
 

@@ -1,7 +1,6 @@
 * {
     padding: 0;
     margin: 0;
-    list-style: none;
     text-decoration: none;
     box-sizing: border-box;
     font-family: sans-serif;
@@ -19,8 +18,13 @@ p {
     line-height: 1.45em;
 }
 
-.full-width {
-    width: 100%;
+.container {
+    width: 80%;
+    margin-left: 10%;
+}
+
+.lista-de-tecnicas {
+    margin: 20px;
 }
 
 body, html {
@@ -49,6 +53,7 @@ header {
 nav li {
     padding: 10px;
     font-size: 2em;
+    list-style: none;
 }
 
 .conteudo {
@@ -81,7 +86,7 @@ section hr {
     margin: 50px 0;
 }
 
-#config {
+.auto-height {
     min-height: auto;
     height: auto;
     display: flex;
@@ -97,6 +102,26 @@ section hr {
     border: none;
     color: #ECEFF1;
     margin: 2px;
+}
+
+/* 
+ * Botões de ação 
+ */
+
+#showMenu{
+    background: #E57373;
+}
+
+#hideMenu{
+    background: #E57373;
+}
+
+#layoutmore {
+    background: #3F51B5;
+}
+
+#layoutless {
+    background: #4CAF50;
 }
 
 #increment {
@@ -119,7 +144,7 @@ section hr {
     font-size: 1em; 
 }
 
-h1, h2 {
+h1, h2, h3 {
     text-align: center;
     margin: 20px 0;
 }
@@ -167,17 +192,20 @@ table td:hover {
     background: #E1F5FE;
 }
 
+table td:nth-child(2) {
+    text-align: left;
+}
+
 footer {
     width: 80%;
     height: 100vh;
     float: right;
     padding: 25px;
     background: #263238;
-    color: #fff;
+    color: #eee;
 }
 
 footer li {
-    list-style: disc;
     margin: 10px;
 }
 
@@ -189,4 +217,31 @@ footer a {
 footer a:visited {
     color: #03A9F4;
     text-decoration: line-through;
+}
+
+.full-width {
+    width: 100%;
+}
+
+@media only screen and (max-width: 809px) {
+    header {
+        position: relative;
+        width: 100%;
+        height: auto;
+        float: none;
+    }
+
+    .conteudo {
+        width: 100%;
+        float: none;
+    }
+
+    section {
+        width: 95%;
+    }
+
+    footer {
+        width: 100%;
+        float: none;
+    }
 }

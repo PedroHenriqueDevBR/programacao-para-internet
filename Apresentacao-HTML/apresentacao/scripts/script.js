@@ -4,6 +4,22 @@ function listenerInit(){
     document.getElementById('increment').addEventListener('click', incrementLetter)
     document.getElementById('decrement').addEventListener('click', decrementLetter)
     document.getElementById('tituloexemplo').addEventListener('click', writeMesage)
+    document.getElementById('layoutmore').addEventListener('click', moreLayout)
+    document.getElementById('layoutless').addEventListener('click', lessLayout)
+}
+
+function moreLayout(){
+    let elementos = document.getElementsByTagName('section')
+    for (let i = 0; i < elementos.length; i++){
+        elementos[i].style.width = '95%'
+    }
+}
+
+function lessLayout() {
+    let elementos = document.getElementsByTagName('section')
+    for (let i = 0; i < elementos.length; i++) {
+        elementos[i].style.width = '80%'
+    }
 }
 
 function incrementLetter() {
