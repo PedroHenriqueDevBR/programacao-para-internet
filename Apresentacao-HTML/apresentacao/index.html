@@ -56,23 +56,31 @@
                 <tbody>
                     <tr>
                         <!-- escape html - &lt; path &gt; -->
-                        <td> <pre class="estlizacao-img"> &lt; img src="picture.jpg" &gt; </pre> </td>
+                        <td>
+                            <pre class="estlizacao-img"> &lt; img src="picture.jpg" &gt; </pre>
+                        </td>
                         <td>arquivo está localizado na mesma pasta que a página atual</td>
                     </tr>
 
                     <tr>
-                        <td> <pre class="estlizacao-img"> &lt; img src="images/picture.jpg" &gt; </pre> </td>
+                        <td>
+                            <pre class="estlizacao-img"> &lt; img src="images/picture.jpg" &gt; </pre>
+                        </td>
                         <td>arquivo localizado na pasta chamada imagem, onde a pasta imagem está localizada na mesma
                             pasta da página atual.</td>
                     </tr>
 
                     <tr>
-                        <td> <pre class="estlizacao-img"> &lt; img src="/images/picture.jpg" &gt; </pre> </td>
+                        <td>
+                            <pre class="estlizacao-img"> &lt; img src="/images/picture.jpg" &gt; </pre>
+                        </td>
                         <td>arquivo localizado na pasta imagem, pasta imagem localizada na pasta raiz do projeto.</td>
                     </tr>
 
                     <tr>
-                        <td> <pre class="estlizacao-img"> &lt; img src="../picture.jpg" &gt; </pre> </td>
+                        <td>
+                            <pre class="estlizacao-img"> &lt; img src="../picture.jpg" &gt; </pre>
+                        </td>
                         <td>arquivo localizado na pasta um nível acima da pasta atual</td>
                     </tr>
                 </tbody>
@@ -131,39 +139,53 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td> <pre class="estlizacao-img"> &lt; title &gt; </pre> </td>
+                        <td>
+                            <pre class="estlizacao-img"> &lt; title &gt; </pre>
+                        </td>
                         <td> Refere-se ao título da página </td>
                     </tr>
 
                     <tr>
-                        <td> <pre class="estlizacao-img"> &lt; style &gt; </pre> </td>
+                        <td>
+                            <pre class="estlizacao-img"> &lt; style &gt; </pre>
+                        </td>
                         <td> Refere-se a estilização da página </td>
                     </tr>
 
                     <tr>
-                        <td> <pre class="estlizacao-img"> &lt; meta &gt; </pre> </td>
-                        <td> Refere-se a informações sobre a página, informações que serão utilizados pelos motores de busca. </td>
+                        <td>
+                            <pre class="estlizacao-img"> &lt; meta &gt; </pre>
+                        </td>
+                        <td> Refere-se a informações sobre a página, informações que serão utilizados pelos motores de
+                            busca. </td>
                     </tr>
 
                     <tr>
-                        <td> <pre class="estlizacao-img"> &lt; link &gt; </pre> </td>
+                        <td>
+                            <pre class="estlizacao-img"> &lt; link &gt; </pre>
+                        </td>
                         <td> utilizado para referenciar folhas de estilo externas </td>
                     </tr>
 
                     <tr>
-                        <td> <pre class="estlizacao-img"> &lt; script &gt; </pre> </td>
+                        <td>
+                            <pre class="estlizacao-img"> &lt; script &gt; </pre>
+                        </td>
                         <td> Define o script no lado do cliente </td>
                     </tr>
 
                     <tr>
-                        <td> <pre class="estlizacao-img"> &lt; base &gt; </pre> </td>
+                        <td>
+                            <pre class="estlizacao-img"> &lt; base &gt; </pre>
+                        </td>
                         <td> Define uma url como base para os caminhos relativos. </td>
                     </tr>
                 </tbody>
             </table>
 
             <h2>Mão no código</h2>
-            <p>Vamos construir uma página, tentaremos fazer com que esta página seja encontrada de pelos navegadores.</p>
+            <p>Vamos construir uma página, tentaremos fazer com que esta página seja encontrada de pelos navegadores.
+            </p>
         </section>
 
         <!-- Apresentação do conteúdo layout -->
@@ -181,7 +203,7 @@
                         <th>Descrição</th>
                     </tr>
                 </thead>
-            
+
                 <tbody>
                     <tr>
                         <!-- escape html - &lt; path &gt; -->
@@ -238,20 +260,25 @@
                             <pre class="estlizacao-img"> &lt; summary &gt; </pre>
                         </td>
                         <td>Define um cabeçalho para o elemento &lt;details&gt;</td>
-                    </tr> 
+                    </tr>
                 </tbody>
             </table>
-            
+
             <h2>HTML técnicas de layout</h2>
             <p>
-                A organização do layout de uma página é muito importante, não apenas para pessoas que irão utilizar-lo, mas também para
-                motores de busca, pois uma página bem organizada facilita a busca por algum item específico. Como exemplo vamos utilizar
-                a tag div, a tag div é utilizada muito, as vezes de forma discriminada, isso faz com que os motores de busca quando
-                forem buscar uma área de navegação por exemplo tenha dificuldades em encontrar, isso seria facilmente resolvido com a
+                A organização do layout de uma página é muito importante, não apenas para pessoas que irão utilizar-lo,
+                mas também para
+                motores de busca, pois uma página bem organizada facilita a busca por algum item específico. Como
+                exemplo vamos utilizar
+                a tag div, a tag div é utilizada muito, as vezes de forma discriminada, isso faz com que os motores de
+                busca quando
+                forem buscar uma área de navegação por exemplo tenha dificuldades em encontrar, isso seria facilmente
+                resolvido com a
                 utilização da tag nav.
             </p>
             <p>
-                Podemos organizar uma página com o auxílio do CSS de forma simples, bastando para isso o conhecimento de uma das
+                Podemos organizar uma página com o auxílio do CSS de forma simples, bastando para isso o conhecimento de
+                uma das
                 técnicas abaixo.
             </p>
 
@@ -265,29 +292,37 @@
 
             <h3>HTML tables</h3>
             <p>
-                Muito utilizado antes que houvesse formas mais elaboradas de construir um design, hoje porém é é uma má prática
-                fazer o design de uma página utilizando tables, pois o table foi desenvolvido com o objetivo de criar dados
+                Muito utilizado antes que houvesse formas mais elaboradas de construir um design, hoje porém é é uma má
+                prática
+                fazer o design de uma página utilizando tables, pois o table foi desenvolvido com o objetivo de criar
+                dados
                 tabulados e não design de páginas.
             </p>
 
             <h3>CSS float property</h3>
             <p>
-                a propriedade float é simples de se utilizada, você só precisa entender como a propriedade funciona e aplicar em
-                páginas, porém há desvantagem na propriedade float, pois os elementos que receberem essa propriedade estarão vinculados
-                ao fluxo do documento, podendo muitas das vezes fazer com que o layout “quebre”, causando uma experiência ruim no
+                a propriedade float é simples de se utilizada, você só precisa entender como a propriedade funciona e
+                aplicar em
+                páginas, porém há desvantagem na propriedade float, pois os elementos que receberem essa propriedade
+                estarão vinculados
+                ao fluxo do documento, podendo muitas das vezes fazer com que o layout “quebre”, causando uma
+                experiência ruim no
                 usuário que utilizar a página.
             </p>
 
             <h3>CSS flexbox</h3>
             <p>
-                Adicionado ao CSS3 a propriedade flexbox facilita a vida de desenvolvedores front-end, por meio da criação de um layout
+                Adicionado ao CSS3 a propriedade flexbox facilita a vida de desenvolvedores front-end, por meio da
+                criação de um layout
                 flexível, que pode se adaptar a tela do usuário. Desvantagem, não finciona corretamente no IE10.
             </p>
 
             <h3>CSS grid</h3>
             <p>
-                Disponibiliza ao desenvolvedor front-end a capacidade de desenvolver páginas utilizando o conceito de linhas e colunas,
-                sem a necessidade da utilização de flutuadores e posicionamento. Desvantagem, não funciona corretamente no IE.
+                Disponibiliza ao desenvolvedor front-end a capacidade de desenvolver páginas utilizando o conceito de
+                linhas e colunas,
+                sem a necessidade da utilização de flutuadores e posicionamento. Desvantagem, não funciona corretamente
+                no IE.
             </p>
 
             <h3>CSS Frameworks</h3>
