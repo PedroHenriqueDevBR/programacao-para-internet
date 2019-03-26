@@ -6,14 +6,12 @@ imagem (escolha um tipo apenas - jpg ou gif...):
 • Salve o corpo da resposta como um arquivo atentando para o tipo.
 '''
 
-import requests as req
-import urllib.request
+import wget
 
 
 def main():
-    url = 'https://python.rs/pylogo.png'
-    name = url.split('/')[-1]
-    urllib.request.urlretrieve(url, name)
+    url = input('Digite a URL da imagem: ')
+    wget.download(url)
 
 
 if __name__ == '__main__':
