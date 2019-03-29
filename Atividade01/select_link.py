@@ -13,13 +13,8 @@ import re
 
 
 def main():
-    try:
-        url = 'https://mynotebox.herokuapp.com/'
-        url2 = 'https://www.google.com/'
-        response = req.get(url2)
-    except:
-        print('Url não encontrada.')
-        
+    url = input('Digite a url para obter os links: ')
+    response = req.get(url)
     links = select_all_tag_a(response.text)
     show_all(links)
     gerar_arquivo(links)
@@ -27,12 +22,11 @@ def main():
 
 def select_all_tag_a(content):
     links = []
-
-    result = re.findall(r"\h\w+\:\//\w+\.\w+\.\w+", content)
+    result = re.findall('href="(.*)"\s', content)
     
     for elem in result:
         links.append(elem)
-
+    
     return links
 
 
@@ -42,7 +36,8 @@ def show_all(links):
 
 
 def gerar_arquivo(lista):
-    arquivo = open('linksencontrados/encontrados.txt', 'a')
+    nome = input('Digite o nome do arquivo: ')
+    arquivo = open('{}.txt'.format(nome), 'w')
     lista_para_salvar = []
 
     for linha in lista:

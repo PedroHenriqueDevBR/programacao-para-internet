@@ -12,7 +12,7 @@ import requests
 
 
 def main():
-    url = 'http://www.ifpi.edu.br/'
+    url = input('Digite uma url: ')
     response = requests.get(url)
     mostraInformacoes(response)
 
