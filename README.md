@@ -20,3 +20,8 @@ Repositório destinado ao armazenamento de arquivos gerados na disciplina de pro
 
 ## Outras coisas que julgue interessantes
 Programação front-end, foco em frameworks como React
+
+## Links
+
+[Pasta no google drive](https://drive.google.com/drive/folders/1-UY3I8MjhhPsXnAygyA3FGLc1FuBKpWH)
+[Atividade django](https://drive.google.com/file/d/1m8zi_sNV-WxgoMSgJBLK_G6ybmFdbyEQ/view)
