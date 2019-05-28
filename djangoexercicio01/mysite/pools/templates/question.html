@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <h1 class="bg-dark py-2 text-center text-white my-0">{{ question.question_text }}</h1>
+    <p class="bg-dark py-1 px-2 text-right text-white my-0">{{ question.pub_date }}</p>
+    <div class="bg-dark py-1 px-2 text-right text-white my-0">
+        {% if question.closed %}
+        <a href="/question/{{ question.id }}/result" class="btn btn-danger">Resultado final</a>
+        
+        {% endif %}
+    </div>
+    
+    
+    <div class="container shadow p-3 mb-5 bg-white rounded my-5">
+        <h2>Alternativas</h2>
+
+        <form action="/question/{{ question.id }}/vote" method="POST" class="mb-5">
+            {% csrf_token %}
+            {% if question.closed %}
+                {% for choice in choices %}
+                <label for="choice{{ choice.id }}" class="mx-1">{{ choice.choice_text }}</label> <br>
+                {% endfor %}
+            {% else %}
+                {% for choice in choices %}
+                <input type="radio" name="choice" value="{{ choice.id }}" id="choice{{ choice.id }}">
+                <label for="choice{{ choice.id }}" class="mx-1">{{ choice.choice_text }}</label> <br>
+                {% endfor %}
+                <input class="btn btn-success px-4 mt-2" type="submit" value="Votar">
+            {% endif %}
+        </form>
+    </div>
+
+    <div class="container">
+        <a href="/">Voltar</a>
+    </div>
+    
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+        
+</body>
+
+</html>
