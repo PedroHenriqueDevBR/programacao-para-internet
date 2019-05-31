@@ -6,6 +6,9 @@ class Question(models.Model):
     closed = models.BooleanField(default=False)
     pub_date = models.DateTimeField(auto_now=True)
 
+    def close(self):
+        self.closed = True
+
     def __str__(self):
         return self.question_text
 

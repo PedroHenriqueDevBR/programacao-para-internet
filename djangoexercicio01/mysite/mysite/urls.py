@@ -23,4 +23,8 @@ urlpatterns = [
     path('question/<int:id>', views.question, name='question'),
     path('question/<int:id>/result', views.result, name='result'),
     path('question/<int:id>/vote', views.vote, name='vote'),
+    path('question/<int:id>/manage', views.manage, name='manage'),
+    path('question/close/<int:id_question>/manage/add/<int:id_choice>', views.add_choice, name='add_choice'),
+    path('question/close/<int:id>', views.fechar_question, name='fechar_question'),
+    path('choice/remove/<int:id>', views.remove_choice, name='remove_choice'),
 ]

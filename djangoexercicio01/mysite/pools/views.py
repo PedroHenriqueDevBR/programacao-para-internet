@@ -54,6 +54,37 @@ def vote(request, id):
     return redirect('/')
 
 
+def manage(request, id):
+    dados = {}
+    dados['question'] = Question.objects.get(id=id)
+    dados['choices'] = dados['question'].choices.all()
+    dados['choices_none'] = Choice.objects.filter(question=None)
+
+    # import pdb; pdb.set_trace()
+    return render(request, 'manage.html', dados)
+
+
+def remove_choice(request, id):
+    c = Choice.objects.get(id=id)
+    c.delete()
+    return redirect('/')
+
+
+def add_choice(request, id_question, id_choice):
+    question = Question.objects.get(id=id_question)
+    choice = Choice.objects.get(id=id_choice)
+    choice.question = question
+    choice.save()
+    return redirect('/')
+
+
+def fechar_question(request, id):
+    q = Question.objects.get(id=id)
+    q.close()
+    q.save()
+    return redirect('/')
+
+
 def calc_total(choices):
     result = 0
     for choice in choices:
