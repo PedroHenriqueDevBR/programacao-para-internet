@@ -2,52 +2,82 @@
 
 {% block main %}
 <div class="col-lg-12">
-    <div class="panel panel-default">
-        <div class="panel-heading">
+    <div class="card">
+        <div class="card-header">
             <strong>Todos os perfis</strong>
         </div>
 
-        {%  if perfis %}
-        <ul>
-            {%  for perfil in perfis  %}
-        
-            <li>
-                <a href="{% url 'exibir' perfil.id %}"> {{ perfil.nome }} / {{ perfil.email }} </a>
-            </li>
-            {%  endfor %}
-        </ul>
-        {% else %}
-        <p>Nenhum Perfil encontrado</p>
-        {% endif %}
+        <div class="card-body">
+            {%  if perfis %}
+            <ul>
+                {%  for perfil in perfis  %}
+            
+                <li>
+                    <a href="{% url 'exibir' perfil.id %}"> {{ perfil.nome }} / {{ perfil.email }} </a>
+                </li>
+                {%  endfor %}
+            </ul>
+            {% else %}
+            <p>Nenhum Perfil encontrado</p>
+            {% endif %}
+        </div>
     </div>
 
-    <div class="col-lg-12">
+    <div class="card mt-3">
         {% if perfil_logado.convites_recebidos.all %}
-        <div>
+        <div class="card-header">
             <h2>Convites recebidos</h2>
         </div>
 
-        <div>
-            Você tem 
-            {{ perfil_logado.convites_recebidos.count }}
-            convite{{ perfil_logado.convites_recebidos.count|pluralize }}
-            aguardando aprovação
-        </div>
+        <div class="card-body">
+            <div class="alert alert-warning">
+                Você tem 
+                {{ perfil_logado.convites_recebidos.count }}
+                convite{{ perfil_logado.convites_recebidos.count|pluralize }}
+                aguardando aprovação
+            </div>
 
-        <ul class="list-group">
-            {% for convite in perfil_logado.convites_recebidos.all %}
-            <li class="list-group-item">
-                {{ convite.solicitante.nome }}
-                <a href="#"> Aceitar </a>
-            </li>
-            {% endfor %}
-        </ul>
+            <ul class="list-group">
+                {% for convite in perfil_logado.convites_recebidos.all %}
+                <li class="list-group-item">
+                    {{ convite.solicitante.nome }}
+                    <a href="perfil/{{ convite.id }}/aceitar"> Aceitar </a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        
         {% else %}
         <div>
             <p>Nenhum convite recebido</p>
         </div>
         {% endif %}
+    </div>
 
+    <div class="card mt-3">
+        {% if perfil_logado.convites_recebidos.all %}
+        <div class="card-header">
+                Você possui
+                {{ perfil_logado.contatos.count }}
+                contato{{ perfil_logado.convites_recebidos.count|pluralize }}
+        </div>
+    
+        <div class="card-body">
+            <ul class="list-group">
+                {% for contato in perfil_logado.contatos.all %}
+                <li class="list-group-item">
+                    {{ contato.nome }} - {{ contato.email }}
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    
+        {% else %}
+        <div>
+            <p>Nenhum convite recebido</p>
+        </div>
+        {% endif %}
+    
     </div>
 </div>
 

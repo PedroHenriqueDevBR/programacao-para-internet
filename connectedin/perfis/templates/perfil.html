@@ -9,7 +9,13 @@
 			<li>Fone: {{perfil.telefone}}</li>
 			<a href="{% url 'index'  %}">Voltar</a>
 	
-			<a href="{% url 'convidar' perfil.id %}">Convidar</a>
+			{% if ja_eh_contato %}
+				<div class="alert alert-danger">
+					Vocês já estão conectados
+				</div>
+			{% else %}
+				<a href="{% url 'convidar' perfil.id %}">Convidar</a>
+			{% endif %}
 		</ul>
 	</div>
 

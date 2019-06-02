@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from perfis.models import Perfil
+from perfis.models import Perfil, Convite
 from django.shortcuts import redirect
 
 
@@ -12,12 +12,14 @@ def index(request):
 
 
 def exibir_perfil(request, perfil_id):
-    perfil = Perfil.objects.get(id=perfil_id)
+    dados = {}
+    dados['perfil'] = Perfil.objects.get(id=perfil_id)
+    dados['perfil_logado'] = get_perfil_logado(request)
+    # import pdb; pdb.set_trace()
+    dados['ja_eh_contato'] = dados['perfil_logado'].contatos.all()
 
-    return render(request, 'perfil.html', {
-		'perfil': perfil,
-		'perfil_logado': get_perfil_logado(request)
-		})
+
+    return render(request, 'perfil.html', dados)
 
 
 def get(perfil_id):
@@ -25,7 +27,6 @@ def get(perfil_id):
 
 
 def convidar(request, perfil_id):
-
     perfil_a_convidar = Perfil.objects.get(id=perfil_id)
     perfil_logado = get_perfil_logado(request)
     perfil_logado.convidar(perfil_a_convidar)
