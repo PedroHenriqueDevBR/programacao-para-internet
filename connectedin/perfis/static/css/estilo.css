@@ -4,3 +4,35 @@
     justify-content: space-around;
     align-items: center;
 }
+/*
+ * Página de login
+*/
+.login-page {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+.container-login {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transform: skew(10deg);
+}
+.container-login form {
+    width: 100%;
+    transform: skew(-10deg);
+}
+.container-login input {
+    width: 100%;
+}
+.center-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.full-w {
+    width: 100%;
+}

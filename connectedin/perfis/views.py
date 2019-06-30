@@ -1,14 +1,30 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from perfis.models import Perfil, Convite
-from django.shortcuts import redirect
 
 
 # Create your views here.
 def index(request):
+    perfil_logado = get_perfil_logado(request)
+
+    if len(perfil_logado) != 1:
+        return redirect('login')
+
     return render(request, 'index.html', {
 		'perfis': Perfil.objects.all(),
-		'perfil_logado': get_perfil_logado(request)
+		'perfil_logado': perfil_logado
 		})
+
+
+def login(request):
+    if request.method == 'POST':
+        login = request.POST.get('login')
+        senha = request.POST.get('senha')
+
+        usuario_cadastrado = 
+
+        import pdb; pdb.set_trace()
+
+    return render(request, 'login.html')
 
 
 def exibir_perfil(request, perfil_id):
@@ -26,16 +42,16 @@ def get(perfil_id):
     return Perfil.objects.get(id=perfil_id)
 
 
+def get_perfil_logado(request):
+    return Perfil.objects.filter(id=1)
+
+
 def convidar(request, perfil_id):
     perfil_a_convidar = Perfil.objects.get(id=perfil_id)
     perfil_logado = get_perfil_logado(request)
     perfil_logado.convidar(perfil_a_convidar)
 
     return redirect('index')
-
-
-def get_perfil_logado(request):
-    return Perfil.objects.get(id=1)
 
 
 def aceitar(request, convite_id):
