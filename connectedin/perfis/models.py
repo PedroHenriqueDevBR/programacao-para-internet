@@ -14,6 +14,9 @@ class Perfil(models.Model):
         convite = Convite(solicitante=self,convidado = perfil_convidado)
         convite.save()
 
+    def desfazer_amizade(self, perfil_amizade):
+        self.contatos.remove(perfil_amizade.id)
+
 class Convite(models.Model):
     solicitante = models.ForeignKey(Perfil,on_delete=models.CASCADE,related_name='convites_feitos' )
     convidado = models.ForeignKey(Perfil, on_delete= models.CASCADE, related_name='convites_recebidos')
