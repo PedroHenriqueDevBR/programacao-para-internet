@@ -40,8 +40,7 @@ def exibir_perfil(request, perfil_id):
     dados = {}
     dados['perfil'] = Perfil.objects.get(id=perfil_id)
     dados['perfil_logado'] = get_perfil_logado(request)
-    # import pdb; pdb.set_trace()
-    dados['ja_eh_contato'] = dados['perfil_logado'].contatos.all()
+    dados['ja_eh_contato'] = dados['perfil_logado'].contatos.filter(id=dados['perfil'].id)
     return render(request, 'perfil.html', dados)
 
 
@@ -52,10 +51,15 @@ def logar(request, email, senha):
     return logado_com_sucesso
 
 
+def deslogar(request):
+    session.eliminar_dado(request, constants.ID_USUARIO)
+    return redirect('index')
+
+
 def get_perfil_logado(request):
     id_usuario = session.recuperar_dado(request, constants.ID_USUARIO)
     if id_usuario == '': return None
-    return Perfil.objects.filter(id=id_usuario)
+    return Perfil.objects.get(id=id_usuario)
 
 
 def convidar(request, perfil_id):
@@ -69,3 +73,16 @@ def aceitar(request, convite_id):
 	convite = Convite.objects.get(id=convite_id)
 	convite.aceitar()
 	return redirect('index')
+
+
+def rejeitar(request, convite_id):
+    convite = Convite.objects.get(id=convite_id)
+    convite.rejeitar()
+    return redirect('index')
+
+
+def desfazer_amizade(request, perfil_id):
+    amizade = Perfil.objects.get(id=perfil_id)
+    perfil_logado = get_perfil_logado(request)
+    perfil_logado.desfazer_amizade(amizade)
+    return redirect('index')

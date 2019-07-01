@@ -11,7 +11,7 @@
             {%  if perfis %}
             <ul>
                 {%  for perfil in perfis  %}
-            
+
                 <li>
                     <a href="{% url 'exibir' perfil.id %}"> {{ perfil.nome }} / {{ perfil.email }} </a>
                 </li>
@@ -31,7 +31,7 @@
 
         <div class="card-body">
             <div class="alert alert-warning">
-                Você tem 
+                Você tem
                 {{ perfil_logado.convites_recebidos.count }}
                 convite{{ perfil_logado.convites_recebidos.count|pluralize }}
                 aguardando aprovação
@@ -40,13 +40,14 @@
             <ul class="list-group">
                 {% for convite in perfil_logado.convites_recebidos.all %}
                 <li class="list-group-item">
-                    {{ convite.solicitante.nome }}
-                    <a href="perfil/{{ convite.id }}/aceitar"> Aceitar </a>
+                    {{ convite.solicitante.nome }} <br>
+                    <a href="perfil/{{ convite.id }}/aceitar" class="btn btn-success"> Aceitar </a>
+                    <a href="perfil/{{ convite.id }}/rejeitar" class="btn btn-danger"> Rejeitar </a>
                 </li>
                 {% endfor %}
             </ul>
         </div>
-        
+
         {% else %}
         <div>
             <p>Nenhum convite recebido</p>
@@ -55,29 +56,30 @@
     </div>
 
     <div class="card mt-3">
-        {% if perfil_logado.convites_recebidos.all %}
+        {% if perfil_logado.contatos.all %}
         <div class="card-header">
-                Você possui
-                {{ perfil_logado.contatos.count }}
-                contato{{ perfil_logado.convites_recebidos.count|pluralize }}
+            Você possui
+            {{ perfil_logado.contatos.count }}
+            contato{{ perfil_logado.convites_recebidos.count|pluralize }}
         </div>
-    
+
         <div class="card-body">
             <ul class="list-group">
                 {% for contato in perfil_logado.contatos.all %}
                 <li class="list-group-item">
                     {{ contato.nome }} - {{ contato.email }}
+                    <a href="{% url 'exibir' contato.id %}" class="btn btn-info float-right"> Exibir </a>
                 </li>
                 {% endfor %}
             </ul>
         </div>
-    
+
         {% else %}
         <div>
             <p>Nenhum convite recebido</p>
         </div>
         {% endif %}
-    
+
     </div>
 </div>
 

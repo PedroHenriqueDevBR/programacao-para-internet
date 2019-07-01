@@ -1,7 +1,7 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
@@ -25,9 +25,14 @@
                     <a class="nav-link" href="/">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Logout</a>
+                    <a class="nav-link" href="{% url 'deslogar' %}">Logout</a>
                 </li>
             </ul>
+        </div>
+
+        <div class="bg-info rounded-circle text-white" style="width: 50px; height: 50px; display: flex; flex-direction: column;
+         justify-content: center; text-align: center;">
+            {{ perfil_logado.nome }}
         </div>
     </nav>
 

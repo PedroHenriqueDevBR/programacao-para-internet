@@ -3,20 +3,22 @@
 
 	<div class="col-lg-12">
 		<h1>Nome: {{perfil.nome}}</h1>
-		<ul>
-			<li><em>e-mail: {{perfil.email}}</em></li>
-			<li>Empresa: {{perfil.nome_empresa}}</li>
-			<li>Fone: {{perfil.telefone}}</li>
-			<a href="{% url 'index'  %}">Voltar</a>
-	
-			{% if ja_eh_contato %}
-				<div class="alert alert-danger">
-					Vocês já estão conectados
-				</div>
-			{% else %}
-				<a href="{% url 'convidar' perfil.id %}">Convidar</a>
-			{% endif %}
+		<ul class="list-group mb-2">
+			<li class="list-group-item"><em>e-mail: {{perfil.email}}</em></li>
+			<li class="list-group-item">Empresa: {{perfil.nome_empresa}}</li>
+			<li class="list-group-item">Fone: {{perfil.telefone}}</li>
 		</ul>
+		{% if ja_eh_contato %}
+			<div class="alert alert-success">
+				<p> Vocês já estão conectados</p>
+			</div>
+			<a href="{% url 'index'  %}" class="btn btn-warning">Voltar</a>	
+			<a href="{% url 'desfazer' perfil.id %}" class="btn btn-danger">Desfazer amizade</a>
+
+		{% else %}
+			<a href="{% url 'index'  %}" class="btn btn-warning">Voltar</a>	
+			<a href="{% url 'convidar' perfil.id %}" class="btn btn-success">Convidar</a>
+		{% endif %}
 	</div>
 
 {% endblock %}
