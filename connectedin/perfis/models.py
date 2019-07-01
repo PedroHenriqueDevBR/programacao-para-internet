@@ -17,6 +17,10 @@ class Perfil(models.Model):
     def desfazer_amizade(self, perfil_amizade):
         self.contatos.remove(perfil_amizade.id)
 
+    def alterar_senha(self, nova_senha):
+        self.senha = nova_senha
+        self.save()
+
 class Convite(models.Model):
     solicitante = models.ForeignKey(Perfil,on_delete=models.CASCADE,related_name='convites_feitos' )
     convidado = models.ForeignKey(Perfil, on_delete= models.CASCADE, related_name='convites_recebidos')
