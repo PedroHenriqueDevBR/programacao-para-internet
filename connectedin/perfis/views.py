@@ -61,6 +61,10 @@ def esqueci_a_minha_senha(request):
     return render(request, 'esqueci_senha.html')
 
 
+def postagem(request):
+    return render(request, 'postagem.html')
+
+
 # #
 # # Métodos auxiliares
 # #
