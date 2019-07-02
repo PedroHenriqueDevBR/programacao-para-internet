@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.urls import path
-from perfis import views 
+from perfis import views
+from usuarios import views as view_usuario
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -13,6 +14,7 @@ urlpatterns = [
     path('perfil/<int:perfil_id>/desfazer',views.desfazer_amizade, name='desfazer'),
     path('perfil/<int:convite_id>/aceitar',views.aceitar, name='aceitar'),
     path('perfil/<int:convite_id>/rejeitar',views.rejeitar, name='rejeitar'),
+    path('registrar/', view_usuario.RegistrarUsuarioView.as_view(), name='registrar'),
 ]
 
 
