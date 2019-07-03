@@ -1,14 +1,19 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 
 class Perfil(models.Model):
     nome = models.CharField(max_length=255, null=False)
-    senha = models.CharField(max_length=100, null=False)
     telefone = models.CharField(max_length=15, null= False)
-    email = models.CharField(max_length=255, null=False)
     nome_empresa = models.CharField(max_length=255, null=False)
     contatos = models.ManyToManyField('self')
+
+    usuario = models.OneToOneField(User, related_name='perfil', on_delete=models.CASCADE)
+
+    @property
+    def email(self):
+        return self.usuario.email
 
     def convidar(self, perfil_convidado):
         convite = Convite(solicitante=self,convidado = perfil_convidado)
@@ -18,8 +23,9 @@ class Perfil(models.Model):
         self.contatos.remove(perfil_amizade.id)
 
     def alterar_senha(self, nova_senha):
-        self.senha = nova_senha
-        self.save()
+        pass
+        # self.senha = nova_senha
+        # self.save()
 
 class Convite(models.Model):
     solicitante = models.ForeignKey(Perfil,on_delete=models.CASCADE,related_name='convites_feitos' )

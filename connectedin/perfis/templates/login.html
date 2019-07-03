@@ -28,7 +28,7 @@
                 </p>
             </div>
         </section>
-        <aside class="col col-sm-12 col-md-4 container-login bg-info text-white">
+        <aside class="col col-sm-12 col-md-4 container-login bg-info text-white px-3">
             <div class="container">
                 <form method="POST">
                     {% csrf_token %}
@@ -43,6 +43,7 @@
                             placeholder="Digite a sua senha">
                     </div>
                     <button class="btn btn-warning text-white full-w" type="submit">ENTRAR</button><br>
+                    <a class="btn btn-success text-white full-w" href="{% url 'registrar' %}">CADASTRAR</a><br>
                     {% if messages %}
                         {% for message in messages %}
                             <div class="alert alert-info mt-3" role="alert">
