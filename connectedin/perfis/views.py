@@ -130,8 +130,8 @@ def dados_validos_para_alterar_senha(request, senha_antiga, nova_senha, repete_s
 
 
 def logar(request, email, senha):
-    usuario = Perfil.objects.filter(email=email, senha=senha)
-    logado_com_sucesso = len(usuario) == 1
+    usuario_encontrado = Perfil.objects.filter(email=email, senha=senha)
+    logado_com_sucesso = len(usuario_encontrado) == 1
     if logado_com_sucesso: session.adicionar_dado(request, constants.ID_USUARIO, str(usuario[0].id))
     return logado_com_sucesso
 

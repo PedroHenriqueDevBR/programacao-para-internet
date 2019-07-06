@@ -7,7 +7,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='index'),
     
-    path('login/', views.login, name='login'),
     path('deslogar/', views.deslogar, name='deslogar'),
     path('alterarsenha/', views.alterar_senha, name='alterar_senha'),
     path('esqueciasenha/', views.esqueci_a_minha_senha, name='esqueci_senha'),
@@ -22,6 +21,8 @@ urlpatterns = [
 
     # Usuarios
     path('registrar/', view_usuario.RegistrarUsuarioView.as_view(), name='registrar'),
+    path('login/', view_usuario.LoginUsuarioView.as_view(), name='login'),
+
 
 ]
 
