@@ -3,49 +3,29 @@ from perfis.models import Perfil, Convite
 from perfis import session, constants
 from django.contrib import messages
 from django.core.mail import send_mail
+from django.contrib.auth.decorators import login_required
 
 # # 
 # # Páginas
 # # 
+@login_required(login_url='login')
 def index(request):
-    perfil_logado = get_perfil_logado(request)
-
-    if perfil_logado == None:
-        return redirect('login')
+    perfil_logado = request.user.perfil
 
     return render(request, 'index.html', {
 		'perfis': Perfil.objects.all(),
 		'perfil_logado': perfil_logado
 		})
 
-
-def login(request):
-    perfil_logado = get_perfil_logado(request)
-
-    if not perfil_logado == None:
-        messages.add_message(request, messages.INFO, 'Impossível ir para a página de login, você está logado.')
-        return redirect('index')
-
-    if request.method == 'POST':
-        email = request.POST.get('email')
-        senha = request.POST.get('senha')
-
-        if logar(request, email, senha):
-            return redirect('/')
-        else:
-            messages.add_message(request, messages.INFO, 'Usuário não cadastrado')
-        
-    return render(request, 'login.html')
-
-
+@login_required(login_url='login')
 def exibir_perfil(request, perfil_id):
     dados = {}
     dados['perfil'] = Perfil.objects.get(id=perfil_id)
-    dados['perfil_logado'] = get_perfil_logado(request)
+    dados['perfil_logado'] = perfil_logado = request.user.perfil
     dados['ja_eh_contato'] = dados['perfil_logado'].contatos.filter(id=dados['perfil'].id)
     return render(request, 'perfil.html', dados)
 
-
+@login_required(login_url='login')
 def esqueci_a_minha_senha(request):
     if request.method == 'POST':
         email = request.POST.get('email')
@@ -60,7 +40,7 @@ def esqueci_a_minha_senha(request):
             return redirect('login')
     return render(request, 'esqueci_senha.html')
 
-
+@login_required(login_url='login')
 def postagem(request):
     return render(request, 'postagem.html')
 
@@ -68,42 +48,35 @@ def postagem(request):
 # #
 # # Métodos auxiliares
 # #
-def get_perfil_logado(request):
-    id_usuario = session.recuperar_dado(request, constants.ID_USUARIO)
-    if id_usuario == '': return None
-    return Perfil.objects.get(id=id_usuario)
 
-
+@login_required(login_url='login')
 def convidar(request, perfil_id):
     perfil_a_convidar = Perfil.objects.get(id=perfil_id)
-    perfil_logado = get_perfil_logado(request)
+    perfil_logado = request.user.perfil
     perfil_logado.convidar(perfil_a_convidar)
     return redirect('index')
 
-
+@login_required(login_url='login')
 def aceitar(request, convite_id):
 	convite = Convite.objects.get(id=convite_id)
 	convite.aceitar()
 	return redirect('index')
 
-
+@login_required(login_url='login')
 def rejeitar(request, convite_id):
     convite = Convite.objects.get(id=convite_id)
     convite.rejeitar()
     return redirect('index')
 
-
+@login_required(login_url='login')
 def desfazer_amizade(request, perfil_id):
     amizade = Perfil.objects.get(id=perfil_id)
-    perfil_logado = get_perfil_logado(request)
+    perfil_logado = request.user.perfil
     perfil_logado.desfazer_amizade(amizade)
     return redirect('index')
 
-
+@login_required(login_url='login')
 def alterar_senha(request):
-    if get_perfil_logado(request) == None:
-        return redirect('login')
-
     if request.method == 'POST':
         senha_antiga = request.POST.get('senha_antiga')
         nova_senha = request.POST.get('nova_senha')
@@ -117,9 +90,10 @@ def alterar_senha(request):
     else:
         return render(request, 'alterarsenha.html')
 
+@login_required(login_url='login')
 def dados_validos_para_alterar_senha(request, senha_antiga, nova_senha, repete_senha):
     valido = True
-    perfil_logado = get_perfil_logado(request)
+    perfil_logado = request.user.perfil
     if senha_antiga != perfil_logado.senha:
         messages.add_message(request, messages.INFO, 'senha não confere com a cadastrada')
         valido = False
@@ -127,15 +101,3 @@ def dados_validos_para_alterar_senha(request, senha_antiga, nova_senha, repete_s
         messages.add_message(request, messages.INFO, 'senha repetida não confere')
         valido = False
     return valido
-
-
-def logar(request, email, senha):
-    usuario_encontrado = Perfil.objects.filter(email=email, senha=senha)
-    logado_com_sucesso = len(usuario_encontrado) == 1
-    if logado_com_sucesso: session.adicionar_dado(request, constants.ID_USUARIO, str(usuario[0].id))
-    return logado_com_sucesso
-
-
-def deslogar(request):
-    session.eliminar_dado(request, constants.ID_USUARIO)
-    return redirect('index')

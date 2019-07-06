@@ -17,7 +17,7 @@ class RegistrarUsuarioView(View):
         form = RegistrarUsuarioForm(request.POST)
         if form.is_valid():
             dados_form = form.cleaned_data
-            usuario = User.objects.create_user(username=dados_form['nome'],
+            usuario = User.objects.create_user(username=dados_form['email'],
                                                 email=dados_form['email'],
                                                 password=dados_form['senha'])
 
@@ -44,8 +44,48 @@ class LoginUsuarioView(View):
 
         if user is None:
             messages.add_message(request, messages.INFO, 'Usuário não cadastrado.')
-            login(request, user)
         else:
-            messages.add_message(request, messages.INFO, 'Logado com sucesso.')
+            login(request, user)
+            return redirect('index')
 
         return redirect('login')
+
+
+class AlterarSenhaView(View):
+    template_name = 'usuarios/alterarsenha.html'
+
+    def get(self, request):
+        return render(request, self.template_name)
+
+    def post(self, request):
+        senha_antiga = request.POST.get('senha_antiga')
+        nova_senha = request.POST.get('nova_senha')
+        repete_senha = request.POST.get('repete_senha')
+
+        if self.dados_validos_para_alterar_senha(request, senha_antiga, nova_senha, repete_senha):
+            user = request.user
+            user.set_password(nova_senha)
+            user.save()
+            return redirect('deslogar')
+
+        return redirect('alterar_senha')
+
+
+    def dados_validos_para_alterar_senha(self, request, senha_antiga, nova_senha, repete_senha):
+        valido = True
+        username = request.user.username
+        user = authenticate(request, username=username, password=senha_antiga)
+
+        if user is None:
+            messages.add_message(request, messages.INFO, 'senha não confere com a cadastrada')
+            valido = False
+        if nova_senha != repete_senha:
+            messages.add_message(request, messages.INFO, 'senha repetida não confere')
+            valido = False
+        return valido
+
+
+# Funções soltas
+def logout_view(request):
+    logout(request)
+    return redirect('login')
