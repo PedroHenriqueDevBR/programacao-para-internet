@@ -89,3 +89,35 @@ class AlterarSenhaView(View):
 def logout_view(request):
     logout(request)
     return redirect('login')
+
+
+def tornar_superuser(request, id_perfil):
+    if request.user.is_superuser:
+        user = Perfil.objects.get(id=id_perfil).usuario
+        user.is_superuser = True
+        user.save()
+    return redirect('/perfil/{}/'.format(id_perfil))
+
+
+def retirar_superuser(request, id_perfil):
+    if request.user.is_superuser:
+        user = Perfil.objects.get(id=id_perfil).usuario
+        user.is_superuser = False
+        user.save()
+    return redirect('/perfil/{}/'.format(id_perfil))
+
+
+def bloquear_usuario(request, id_perfil):
+    if request.user.is_superuser:
+        user = Perfil.objects.get(id=id_perfil).usuario
+        user.is_active = False
+        user.save()
+    return redirect('/perfil/{}/'.format(id_perfil))
+
+
+def desbloquear_usuario(request, id_perfil):
+    if request.user.is_superuser:
+        user = Perfil.objects.get(id=id_perfil).usuario
+        user.is_active = True
+        user.save()
+    return redirect('/perfil/{}/'.format(id_perfil))

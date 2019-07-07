@@ -24,6 +24,10 @@ urlpatterns = [
     path('login/', view_usuario.LoginUsuarioView.as_view(), name='login'),
     path('deslogar/', view_usuario.logout_view, name='deslogar'),
     path('alterarsenha/', view_usuario.AlterarSenhaView.as_view(), name='alterar_senha'),
+    path('tornarsuperuser/<int:id_perfil>', view_usuario.tornar_superuser, name='tornar_superuser'),
+    path('retirarsuperuser/<int:id_perfil>', view_usuario.retirar_superuser, name='retirar_superuser'),
+    path('bloquearuser/<int:id_perfil>', view_usuario.bloquear_usuario, name='bloquear_user'),
+    path('desbloquearuser/<int:id_perfil>', view_usuario.desbloquear_usuario, name='desbloquear_user'),
 
 ]
 

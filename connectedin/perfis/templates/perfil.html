@@ -15,6 +15,22 @@
 			<a href="{% url 'index'  %}" class="btn btn-warning">Voltar</a>	
 			<a href="{% url 'desfazer' perfil.id %}" class="btn btn-danger">Desfazer amizade</a>
 
+			{% if perfil_logado.usuario.is_superuser %}
+				<!-- Adiciona ou retira superusuário -->
+				{% if perfil.usuario.is_superuser %}
+					<a href="{% url 'retirar_superuser' perfil.id %}" class="btn btn-danger">Retirar superuser</a>
+				{% else %}
+					<a href="{% url 'tornar_superuser' perfil.id %}" class="btn btn-primary">Tornar superuser</a>
+				{% endif %}
+
+				<!-- Bloqueio de usuário -->
+				{% if perfil.usuario.is_active %}
+					<a href="{% url 'bloquear_user' perfil.id %}" class="btn btn-danger">Bloquear usuário</a>
+				{% else %}
+					<a href="{% url 'desbloquear_user' perfil.id %}" class="btn btn-primary">Desbloquear usuário</a>
+				{% endif %}
+			{% endif %}
+
 		{% else %}
 			<a href="{% url 'index'  %}" class="btn btn-warning">Voltar</a>	
 			<a href="{% url 'convidar' perfil.id %}" class="btn btn-success">Convidar</a>

@@ -74,30 +74,3 @@ def desfazer_amizade(request, perfil_id):
     perfil_logado = request.user.perfil
     perfil_logado.desfazer_amizade(amizade)
     return redirect('index')
-
-@login_required(login_url='login')
-def alterar_senha(request):
-    if request.method == 'POST':
-        senha_antiga = request.POST.get('senha_antiga')
-        nova_senha = request.POST.get('nova_senha')
-        repete_senha = request.POST.get('repete_senha')
-
-        # Alteração valida
-        if dados_validos_para_alterar_senha(request, senha_antiga, nova_senha, repete_senha):
-            perfil_logado.alterar_senha(nova_senha)
-            return redirect('index')
-        return redirect('alterar_senha')
-    else:
-        return render(request, 'alterarsenha.html')
-
-@login_required(login_url='login')
-def dados_validos_para_alterar_senha(request, senha_antiga, nova_senha, repete_senha):
-    valido = True
-    perfil_logado = request.user.perfil
-    if senha_antiga != perfil_logado.senha:
-        messages.add_message(request, messages.INFO, 'senha não confere com a cadastrada')
-        valido = False
-    if nova_senha != repete_senha:
-        messages.add_message(request, messages.INFO, 'senha repetida não confere')
-        valido = False
-    return valido
