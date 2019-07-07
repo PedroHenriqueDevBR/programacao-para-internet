@@ -12,13 +12,15 @@ urlpatterns = [
     path('esqueciasenha/', views.esqueci_a_minha_senha, name='esqueci_senha'),
 
     # Perfil
-    path('postagem/', views.postagem, name='postagem'),
     path('perfil/<int:perfil_id>/', views.exibir_perfil, name='exibir'),
     path('perfil/<int:perfil_id>/convidar/',views.convidar, name='convidar'),
     path('perfil/<int:perfil_id>/desfazer/',views.desfazer_amizade, name='desfazer'),
     path('perfil/<int:convite_id>/aceitar/',views.aceitar, name='aceitar'),
     path('perfil/<int:convite_id>/rejeitar/',views.rejeitar, name='rejeitar'),
     path('encontrar/', views.buscar_usuario, name='buscar_usuario'),
+    #Perfil Postage,
+    path('postagem/', views.postagem, name='postagem'),
+    path('excluirpostagem/<int:id_postagem>', views.excluir_postagem, name='excluir_postagem'),
 
     # Usuarios
     path('registrar/', view_usuario.RegistrarUsuarioView.as_view(), name='registrar'),

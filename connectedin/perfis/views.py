@@ -79,7 +79,7 @@ def desfazer_amizade(request, perfil_id):
     perfil_logado.desfazer_amizade(amizade)
     return redirect('index')
 
-
+@login_required(login_url='login')
 def buscar_usuario(request):
     encontrados = None
     if request.method == 'POST':
@@ -87,6 +87,11 @@ def buscar_usuario(request):
         encontrados = Perfil.objects.filter(nome__contains=query)                
     return render(request, 'buscarusuario.html', {'encontrados': encontrados})
 
+@login_required(login_url='login')
+def excluir_postagem(request, id_postagem):
+    postagem = Post.objects.get(id=id_postagem)
+    postagem.delete()
+    return redirect('index')
 
 # #
 # # Métodos auxiliares

@@ -106,8 +106,9 @@
             <ul class="list-group">
                 {% for post in perfil_logado.posts.all %}
                 <li class="list-group-item">
-                    {{ post.titulo }} - {{ post.text }}
-                    <a href="#" class="btn btn-info float-right"> Exibir </a>
+                    {{ post.titulo }} - {{ post.text }} <br>
+                    <a href="{% url 'excluir_postagem' post.id %}" onclick="return confirm('Deseja realmente excluir postagem?')" class="btn btn-danger float-right mx-3"> Excluir </a>
+                    <a href="#" class="btn btn-info float-right"> Ver completo </a>
                 </li>
                 {% endfor %}
             </ul>
