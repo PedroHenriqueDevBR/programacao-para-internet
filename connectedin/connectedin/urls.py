@@ -18,6 +18,7 @@ urlpatterns = [
     path('perfil/<int:perfil_id>/desfazer/',views.desfazer_amizade, name='desfazer'),
     path('perfil/<int:convite_id>/aceitar/',views.aceitar, name='aceitar'),
     path('perfil/<int:convite_id>/rejeitar/',views.rejeitar, name='rejeitar'),
+    path('encontrar/', views.buscar_usuario, name='buscar_usuario'),
 
     # Usuarios
     path('registrar/', view_usuario.RegistrarUsuarioView.as_view(), name='registrar'),

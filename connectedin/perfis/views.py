@@ -80,6 +80,14 @@ def desfazer_amizade(request, perfil_id):
     return redirect('index')
 
 
+def buscar_usuario(request):
+    encontrados = None
+    if request.method == 'POST':
+        query = request.POST.get('busca')
+        encontrados = Perfil.objects.filter(nome__contains=query)                
+    return render(request, 'buscarusuario.html', {'encontrados': encontrados})
+
+
 # #
 # # Métodos auxiliares
 # #
@@ -87,9 +95,8 @@ def selecionar_posts_de_amigos(request):
     perfil_logado = request.user.perfil
     amigos = perfil_logado.contatos.all()
     posts = []
-    
     for amigo in amigos:
         posts.extend(list(amigo.posts.all()))
     posts.sort(key=lambda x: x.data_postagem, reverse=True)
-
     return posts
+
