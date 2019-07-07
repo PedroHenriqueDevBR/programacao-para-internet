@@ -10,12 +10,12 @@ from django.contrib.auth.decorators import login_required
 # # 
 @login_required(login_url='login')
 def index(request):
-    perfil_logado = request.user.perfil
+    dados = {}
+    dados['perfis'] = Perfil.objects.all()
+    dados['perfil_logado'] = request.user.perfil
+    dados['timeline'] = selecionar_posts_de_amigos(request)
 
-    return render(request, 'index.html', {
-		'perfis': Perfil.objects.all(),
-		'perfil_logado': perfil_logado
-		})
+    return render(request, 'index.html', dados)
 
 @login_required(login_url='login')
 def exibir_perfil(request, perfil_id):
@@ -53,11 +53,6 @@ def postagem(request):
 
     return render(request, 'postagem.html')
 
-
-# #
-# # Métodos auxiliares
-# #
-
 @login_required(login_url='login')
 def convidar(request, perfil_id):
     perfil_a_convidar = Perfil.objects.get(id=perfil_id)
@@ -83,3 +78,18 @@ def desfazer_amizade(request, perfil_id):
     perfil_logado = request.user.perfil
     perfil_logado.desfazer_amizade(amizade)
     return redirect('index')
+
+
+# #
+# # Métodos auxiliares
+# #
+def selecionar_posts_de_amigos(request):
+    perfil_logado = request.user.perfil
+    amigos = perfil_logado.contatos.all()
+    posts = []
+    
+    for amigo in amigos:
+        posts.extend(list(amigo.posts.all()))
+    posts.sort(key=lambda x: x.data_postagem, reverse=True)
+
+    return posts

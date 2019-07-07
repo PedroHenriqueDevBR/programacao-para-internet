@@ -120,6 +120,33 @@
         {% endif %}
 
     </div>
+
+    <!-- Timeline -->
+    <div class="container my-3">
+        <div class="card-columns">
+            {% if timeline %}
+                {% for post in timeline %}
+                <div class="card" style="width: 18rem;">
+                    <div class="card-header">
+                        <h5 class="card-title">{{ post.perfil.nome }}</h5><br>
+                        <pre>{{ post.data_postagem }}</pre>
+                    </div>
+                    <div class="card-body">
+                        <h6 class="card-subtitle mb-2 text-muted">{{ post.titulo }}</h6>
+                        <p class="card-text">{{ post.text }}</p>
+                        <a href="#" class="card-link">Ver completo</a>
+                        <a href="#" class="card-link">Curtir</a>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+        </div>
+        <div>
+            <p>Seus amigos são antisociais, não há posts</p>
+        </div>
+        {% endif %}
+
+    </div>
 </div>
 
 {% endblock %}
