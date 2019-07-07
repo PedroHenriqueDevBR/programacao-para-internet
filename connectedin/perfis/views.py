@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from perfis.models import Perfil, Convite
+from perfis.models import Perfil, Convite, Post
 from perfis import session, constants
 from django.contrib import messages
 from django.core.mail import send_mail
@@ -42,6 +42,15 @@ def esqueci_a_minha_senha(request):
 
 @login_required(login_url='login')
 def postagem(request):
+    if request.method == 'POST':
+        titulo = request.POST.get('titulo')
+        texto = request.POST.get('texto')
+        perfil = request.user.perfil
+
+        Post.objects.create(titulo=titulo, text=texto, perfil=perfil)
+
+        return redirect('index')
+
     return render(request, 'postagem.html')
 
 

@@ -38,3 +38,10 @@ class Convite(models.Model):
 
     def rejeitar(self):
         self.delete()
+
+
+class Post(models.Model):
+    titulo = models.CharField(max_length=250)
+    text = models.TextField()
+    data_postagem = models.DateTimeField(auto_now=True)
+    perfil = models.ForeignKey(Perfil, on_delete=models.CASCADE, related_name='posts')

@@ -20,17 +20,17 @@
 
         <div class="card-body">
             {%  if perfis %}
-                <ul>
+            <ul>
                 {%  for perfil in perfis  %}
-                    {% if perfil != perfil_logado %}
-                    <li>
-                        <a href="{% url 'exibir' perfil.id %}"> {{ perfil.nome }} / {{ perfil.email }} </a>
-                    </li>
-                    {% endif %}
+                {% if perfil != perfil_logado %}
+                <li>
+                    <a href="{% url 'exibir' perfil.id %}"> {{ perfil.nome }} / {{ perfil.email }} </a>
+                </li>
+                {% endif %}
                 {%  endfor %}
-                </ul>
+            </ul>
             {% else %}
-                <p>Nenhum Perfil encontrado</p>
+            <p>Nenhum Perfil encontrado</p>
             {% endif %}
         </div>
     </div>
@@ -89,6 +89,33 @@
         {% else %}
         <div>
             <p>Nenhum convite recebido</p>
+        </div>
+        {% endif %}
+
+    </div>
+
+    <div class="card mt-3">
+        {% if perfil_logado.posts.all %}
+        <div class="card-header">
+            Você possui
+            {{ perfil_logado.posts.count }}
+            post{{ perfil_logado.posts.count|pluralize }}
+        </div>
+
+        <div class="card-body">
+            <ul class="list-group">
+                {% for post in perfil_logado.posts.all %}
+                <li class="list-group-item">
+                    {{ post.titulo }} - {{ post.text }}
+                    <a href="#" class="btn btn-info float-right"> Exibir </a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        {% else %}
+        <div>
+            <p>Nenhum post cadastrado</p>
         </div>
         {% endif %}
 
