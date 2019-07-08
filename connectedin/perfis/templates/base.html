@@ -12,8 +12,8 @@
     <link rel="stylesheet" href="{% static '/css/estilo.css' %}">
 </head>
 
-<body>
-    <div class="navbar-dark" style="background: #4d2c91;">
+<body style="background: #263238;">
+    <div class="navbar-dark" style="background: #3F51B5;">
         <nav class="navbar container navbar-expand-lg">
             <a class="navbar-brand" href="/">ConnectedIn</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -27,7 +27,7 @@
                         <a class="nav-link" href="/">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Usuários - pendente</a>
+                        <a class="nav-link" href="{% url 'buscar_usuario' %}">Usuários</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'alterar_senha' %}">Alterar senha</a>
@@ -47,11 +47,11 @@
     </div>
 
 
-    <main class="mx-0 index bg-light">
+    <main class="mx-0 index">
         <div class="row container">
-            <section class="col col-sm-12 col-md-3 py-3 opcoes-do-usuario border-top">
+            <section class="col col-sm-12 col-md-3 py-3 opcoes-do-usuario">
                 <div class="card">
-                    <div class="card-header center-center" style="background: #836fa9;">
+                    <div class="card-header center-center" style="background: #3F51B5;">
                         <img src="{% static 'media/img/user.png' %}" alt="Usuário" width="75%"
                             class="img-fluid img-thumbnail"><br>
                         <p class="text-white">{{ perfil_logado.nome }}</p>
@@ -59,21 +59,21 @@
                     <div class="card-body">
                         <ul class="nav flex-column mt-3">
                             <li class="nav-item"> <a class="nav-link" href="#">Meu perfil</a> </li>
-                            <li class="nav-item"> <a class="nav-link" href="#">Amigos - pendente</a> </li>
+                            <li class="nav-item"> <a class="nav-link" href="{% url 'conexoes' %}">Conexões</a> </li>
                         </ul>
                     </div>
                 </div>
             </section>
 
 
-            <div class="timeline col col-sm-12 col-md-6 bg-light pt-3">
-            {% block main %}
-            {% endblock %}
+            <div class="timeline col col-sm-12 col-md-6 mt-3">
+                {% block main %}
+                {% endblock %}
             </div>
 
-            <aside class="col col-sm-12 col-md-3 py-3 border-top">
+            <aside class="col col-sm-12 col-md-3 py-3">
                 <div class="bg-white card">
-                    <div class="card-header text-white" style="background: #836fa9;">
+                    <div class="card-header text-white" style="background: #3F51B5;">
                         <h3 class="text-center">Convites enviados</h3>
                     </div>
                     <div class="card-body px-0 py-0">
@@ -85,7 +85,8 @@
                                 convite{{ perfil_logado.convites_feitos.count|pluralize }}
                             </p>
                             {% for convite in perfil_logado.convites_feitos.all %}
-                            <li class="list-group-item">Fulano de tal <a href="" class="float-right">cancelar</a></li>
+                            <li class="list-group-item">Fulano de tal <a href="{% url 'rejeitar' convite.id %}"
+                                    class="float-right">cancelar</a></li>
                             {% endfor %}
                         </ul>
                         <a href="#" class="btn btn-light full-w"">Ver todos</a>
@@ -96,7 +97,7 @@
                 </div>
 
                 <div class="mt-3 card bg-white">
-                    <div class="card-header text-white" style="background: #836fa9;">
+                    <div class="card-header text-white" style="background: #3F51B5;">
                         <h3 class="text-center">Convites Recebidos</h3>
                     </div>
                     <div class="card-body px-0 py-0">
@@ -111,7 +112,7 @@
                             {% for convite in perfil_logado.convites_recebidos.all %}
                             <li class="list-group-item">{{ convite.solicitante.nome }} <a
                                     href="perfil/{{ convite.id }}/aceitar" class="float-right">Aceitar</a> <a
-                                    href="perfil/{{ convite.id }}/rejeitar">Rejeitar</a> </li>
+                                    href="perfil/{{ convite.id }}/rejeitar" class="float-right">Rejeitar</a> </li>
                             {% endfor %}
                         </ul>
                         <a href="#" class="btn btn-light full-w">Ver todos</a>

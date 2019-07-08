@@ -81,14 +81,22 @@ def desfazer_amizade(request, perfil_id):
 
 @login_required(login_url='login')
 def buscar_usuario(request):
-    encontrados = None
+    encontrados = Perfil.objects.all()
+
     if request.method == 'POST':
         query = request.POST.get('busca')
         encontrados = Perfil.objects.filter(nome__contains=query)
-    
+
     dados = {}
     dados['encontrados'] = encontrados
     dados['perfil_logado'] = request.user.perfil
+    return render(request, 'buscarusuario.html', dados)
+
+@login_required(login_url='login')
+def conexoes(request):
+    dados = {}
+    dados['perfil_logado'] = request.user.perfil
+    dados['encontrados'] = dados['perfil_logado'].contatos.all()
     return render(request, 'buscarusuario.html', dados)
 
 @login_required(login_url='login')

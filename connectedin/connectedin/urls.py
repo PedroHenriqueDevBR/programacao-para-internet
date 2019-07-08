@@ -18,7 +18,8 @@ urlpatterns = [
     path('perfil/<int:convite_id>/aceitar/',views.aceitar, name='aceitar'),
     path('perfil/<int:convite_id>/rejeitar/',views.rejeitar, name='rejeitar'),
     path('encontrar/', views.buscar_usuario, name='buscar_usuario'),
-    #Perfil Postage,
+    path('conexoes/', views.conexoes, name='conexoes'),
+    #Perfil Postagem,
     path('postagem/', views.postagem, name='postagem'),
     path('excluirpostagem/<int:id_postagem>', views.excluir_postagem, name='excluir_postagem'),
 
