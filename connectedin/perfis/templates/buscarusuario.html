@@ -2,24 +2,27 @@
 
 {% block main %}
 
-{% if encontrados %}
 
-<ul class="list-group full-w">
-    {% for encontrado in encontrados %}
-        {% if encontrado.id != user.perfil.id %}
-            {% if encontrado in user.perfil.contatos.all %}
-                <li class="list-group-item full-w"> {{ encontrado.nome }} <a class="btn btn-success" href="{% url 'exibir' encontrado.id %}">Exibir</a> <p>Já estão conectados</p> </li>
-            {% else %}
-                <li class="list-group-item full-w"> {{ encontrado.nome }} 
-                    <a class="btn btn-success" href="{% url 'exibir' encontrado.id %}">Exibir</a>
-                    <a class="btn btn-success" href="{% url 'convidar' encontrado.id %}">Adiciona</a> </li>
+<div>
+{% if encontrados %}
+    <ul class="list-group full-w">
+        {% for encontrado in encontrados %}
+            {% if encontrado.id != user.perfil.id %}
+                {% if encontrado in user.perfil.contatos.all %}
+                    <li class="list-group-item full-w"> {{ encontrado.nome }} <a class="btn btn-success" href="{% url 'exibir' encontrado.id %}">Exibir</a> <p>Já estão conectados</p> </li>
+                {% else %}
+                    <li class="list-group-item full-w"> {{ encontrado.nome }} 
+                        <a class="btn btn-success" href="{% url 'exibir' encontrado.id %}">Exibir</a>
+                        <a class="btn btn-success" href="{% url 'convidar' encontrado.id %}">Adiciona</a> </li>
+                {% endif %}
             {% endif %}
-        {% endif %}
-    {% endfor %}
-</ul>
+        {% endfor %}
+    </ul>
 
 {% else %}
 <p>Busca não encontrada</p>
 {% endif %}
+</div>
+
 
 {% endblock %}

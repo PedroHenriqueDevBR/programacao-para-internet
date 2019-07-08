@@ -84,8 +84,12 @@ def buscar_usuario(request):
     encontrados = None
     if request.method == 'POST':
         query = request.POST.get('busca')
-        encontrados = Perfil.objects.filter(nome__contains=query)                
-    return render(request, 'buscarusuario.html', {'encontrados': encontrados})
+        encontrados = Perfil.objects.filter(nome__contains=query)
+    
+    dados = {}
+    dados['encontrados'] = encontrados
+    dados['perfil_logado'] = request.user.perfil
+    return render(request, 'buscarusuario.html', dados)
 
 @login_required(login_url='login')
 def excluir_postagem(request, id_postagem):
