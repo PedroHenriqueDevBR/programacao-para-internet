@@ -4,6 +4,8 @@ from perfis import session, constants
 from django.contrib import messages
 from django.core.mail import send_mail
 from django.contrib.auth.decorators import login_required
+from django.core.files.storage import FileSystemStorage
+
 
 # # 
 # # Páginas
@@ -45,9 +47,15 @@ def postagem(request):
     if request.method == 'POST':
         titulo = request.POST.get('titulo')
         texto = request.POST.get('texto')
+        imagem = request.FILES['imagem']
         perfil = request.user.perfil
 
-        Post.objects.create(titulo=titulo, text=texto, perfil=perfil)
+        # Formatação da imagem
+        file_system = FileSystemStorage()
+        file_name = file_system.save(imagem.name, imagem)
+
+        # Salvando no banco de dados
+        Post.objects.create(titulo=titulo, text=texto, perfil=perfil, imagem=file_name)
 
         return redirect('index')
 
@@ -103,6 +111,18 @@ def conexoes(request):
 def excluir_postagem(request, id_postagem):
     postagem = Post.objects.get(id=id_postagem)
     postagem.delete()
+    return redirect('index')
+
+def alterar_perfil(request):
+    if request.method == 'POST':
+        imagem = request.FILES['imagemperfil']
+        file_system = FileSystemStorage()
+        file_name = file_system.save(imagem.name, imagem)
+
+        perfil_logado = request.user.perfil
+        perfil_logado.imagem_perfil = file_name
+        perfil_logado.save()
+
     return redirect('index')
 
 # #

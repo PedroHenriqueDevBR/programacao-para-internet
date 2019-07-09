@@ -7,6 +7,8 @@ class Perfil(models.Model):
     nome = models.CharField(max_length=255, null=False)
     telefone = models.CharField(max_length=15, null= False)
     nome_empresa = models.CharField(max_length=255, null=False)
+    imagem_perfil = models.ImageField(null=True, blank=True, upload_to='uploads/fotoperfil/')
+    imagem_capa = models.ImageField(null=True, blank=True, upload_to='uploads/fotocapa/')
     contatos = models.ManyToManyField('self')
 
     usuario = models.OneToOneField(User, related_name='perfil', on_delete=models.CASCADE)
@@ -45,3 +47,4 @@ class Post(models.Model):
     text = models.TextField()
     data_postagem = models.DateTimeField(auto_now=True)
     perfil = models.ForeignKey(Perfil, on_delete=models.CASCADE, related_name='posts')
+    imagem = models.ImageField(null=True, blank=True, upload_to='uploads/postagem/')

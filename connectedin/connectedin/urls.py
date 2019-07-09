@@ -3,6 +3,10 @@ from django.urls import path
 from perfis import views
 from usuarios import views as view_usuario
 
+from django.conf import settings
+from django.conf.urls.static import static
+
+
 urlpatterns = [
     # Principal
     path('admin/', admin.site.urls),
@@ -19,6 +23,7 @@ urlpatterns = [
     path('perfil/<int:convite_id>/rejeitar/',views.rejeitar, name='rejeitar'),
     path('encontrar/', views.buscar_usuario, name='buscar_usuario'),
     path('conexoes/', views.conexoes, name='conexoes'),
+    path('alterarperfil/', views.alterar_perfil, name='alterar_perfil'),
     #Perfil Postagem,
     path('postagem/', views.postagem, name='postagem'),
     path('excluirpostagem/<int:id_postagem>', views.excluir_postagem, name='excluir_postagem'),
@@ -33,6 +38,9 @@ urlpatterns = [
     path('bloquearuser/<int:id_perfil>', view_usuario.bloquear_usuario, name='bloquear_user'),
     path('desbloquearuser/<int:id_perfil>', view_usuario.desbloquear_usuario, name='desbloquear_user'),
 
+
 ]
 
-
+# Função para que o django mostre imagens durante o desenvolvimento
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

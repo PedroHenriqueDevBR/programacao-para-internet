@@ -4,11 +4,11 @@
 
 <!-- Área para novas postagens -->
     <div class="container bg-white py-3 border rounded">
-        <form method="POST" action="{% url 'postagem' %}">
+        <form method="POST" action="{% url 'postagem' %}" enctype="multipart/form-data">
             {% csrf_token %}
             <input type="text" name="titulo" class="form-control" placeholder="Titulo"><br>
             <textarea name="texto" class="form-control" rows="3" placeholder="Escreva o que quiser"></textarea><br>
-            <input name="arquivo" type="file" class="form-control-file"><br>
+            <input name="imagem" type="file" class="form-control-file"><br>
             <button class="btn btn-info">Postar</button>
         </form>
     </div>
@@ -26,6 +26,9 @@
                     <h5 class="card-title">{{ post.titulo }}</h5>
                     <p class="card-text">
                         {{ post.text }}
+                        {% if post.imagem %}
+                        <img src="/media/{{ post.imagem }}" alt="Post imagem" class="img-fluid full-w border rounded mt-2">
+                        {% endif %}
                     </p>
                     <p class="card-text"><small class="text-muted">{{ post.data_postagem }}</small></p>
                 </div>
