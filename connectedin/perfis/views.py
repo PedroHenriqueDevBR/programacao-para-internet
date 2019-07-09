@@ -93,7 +93,8 @@ def buscar_usuario(request):
 
     if request.method == 'POST':
         query = request.POST.get('busca')
-        encontrados = Perfil.objects.filter(nome__contains=query)
+        encontrados = list(Perfil.objects.filter(nome__contains=query))
+        encontrados.remove(request.user.perfil)
 
     dados = {}
     dados['encontrados'] = encontrados
