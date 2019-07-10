@@ -9,14 +9,42 @@
         {% for encontrado in encontrados %}
         {% if encontrado.id != user.perfil.id %}
         {% if encontrado in user.perfil.contatos.all %}
-        <li class="list-group-item full-w"> {{ encontrado.nome }} <a class="btn btn-success"
+        <!-- <li class="list-group-item full-w"> {{ encontrado.nome }} <a class="btn btn-success"
                 href="{% url 'exibir' encontrado.id %}">Exibir</a>
             <p>Já estão conectados</p>
-        </li>
+        </li> -->
+
+        <div class="row border rounded mb-3 py-2 px-2 bg-white">
+            <div class="col col-md-3 bg-info py-5"
+                style="background: url('/media/{{ encontrado.imagem_perfil }}');
+                        background-position: center;
+                        background-size: cover;
+                        border-radius: 5px;"></div>
+            <div class="col col-md-9 bg-white py-4">
+                <p>{{ encontrado.nome }}</p>
+                <div>
+                    <a href="{% url 'exibir' encontrado.id %}" class="btn btn-info">Acessar</a>
+                </div>
+            </div>
+        </div>
         {% else %}
-        <li class="list-group-item full-w"> {{ encontrado.nome }}
-            <a class="btn btn-success" href="{% url 'exibir' encontrado.id %}">Exibir</a>
-            <a class="btn btn-success" href="{% url 'convidar' encontrado.id %}">Adiciona</a> </li>
+
+        <div class="row border rounded mb-3 py-2 px-2 bg-white">
+            <div class="col col-md-3 py-5 bg-info"
+                style="background: url('/media/{{ encontrado.imagem_perfil }}');
+                        background-position: center;
+                        background-size: cover;
+                        border-radius: 5px;">
+            </div>
+            <div class="col col-md-9 bg-white py-4">
+                <p>{{ encontrado.nome }}</p>
+                <div>
+                    <a href="{% url 'exibir' encontrado.id %}" class="btn btn-info">Acessar</a>
+                    <a href="{% url 'convidar' encontrado.id %}" class="btn btn-success">Enviar solicitação</a>
+                </div>
+            </div>
+        </div>
+
         {% endif %}
         {% endif %}
         {% endfor %}
@@ -24,9 +52,20 @@
 
     {% else %}
     <div class="full-w alert alert-warning text-center">
-            <h2>Nenhum resultado encontrado</h2>
+        <h2>Nenhum resultado encontrado</h2>
     </div>
     {% endif %}
+
+    <!-- <div class="row border rounded">
+        <div class="col col-md-3 bg-warning py-5"></div>
+        <div class="col col-md-9 bg-white py-4">
+            <p>Pedro Henrique</p>
+            <div>
+                <button class="btn btn-info">Acessar</button>
+                <button class="btn btn-success">Enviar solicitação</button>
+            </div>
+        </div>
+    </div> -->
 </div>
 
 

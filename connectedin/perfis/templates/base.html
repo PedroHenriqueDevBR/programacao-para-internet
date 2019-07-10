@@ -126,8 +126,8 @@
 
                             {% for convite in perfil_logado.convites_recebidos.all %}
                             <li class="list-group-item full-w text-center">{{ convite.solicitante.nome }} <br>
-                                <a href="perfil/{{ convite.id }}/aceitar" class="float-center btn btn-success">Aceitar</a> <a
-                                    href="perfil/{{ convite.id }}/rejeitar" class="float-center btn btn-danger">Rejeitar</a> </li>
+                                <a href="/perfil/{{ convite.id }}/aceitar" class="float-center btn btn-success">Aceitar</a> <a
+                                    href="/perfil/{{ convite.id }}/rejeitar" class="float-center btn btn-danger">Rejeitar</a> </li>
                             {% endfor %}
                         </ul>
                         <a href="#" class="btn btn-light full-w">Ver todos</a>
