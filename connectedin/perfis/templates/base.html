@@ -100,8 +100,8 @@
                                 convite{{ perfil_logado.convites_feitos.count|pluralize }}
                             </p>
                             {% for convite in perfil_logado.convites_feitos.all %}
-                            <li class="list-group-item">Fulano de tal <a href="{% url 'rejeitar' convite.id %}"
-                                    class="float-right">cancelar</a></li>
+                            <li class="list-group-item text-center">{{ convite.convidado.nome }} <br>
+                                <a href="{% url 'rejeitar' convite.id %}" class="float-center btn btn-danger full-w">cancelar</a></li>
                             {% endfor %}
                         </ul>
                         <a href="#" class="btn btn-light full-w"">Ver todos</a>

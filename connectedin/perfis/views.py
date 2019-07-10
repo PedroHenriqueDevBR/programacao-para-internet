@@ -45,17 +45,22 @@ def esqueci_a_minha_senha(request):
 @login_required(login_url='login')
 def postagem(request):
     if request.method == 'POST':
-        titulo = request.POST.get('titulo')
-        texto = request.POST.get('texto')
-        imagem = request.FILES['imagem']
-        perfil = request.user.perfil
+        try:
+            titulo = request.POST.get('titulo')
+            texto = request.POST.get('texto')
+            imagem = request.FILES['imagem']
+            perfil = request.user.perfil
+            # Formatação da imagem
+            file_system = FileSystemStorage()
+            file_name = file_system.save(imagem.name, imagem)
+            # Salvando no banco de dados
+            Post.objects.create(titulo=titulo, text=texto, perfil=perfil, imagem=file_name)
 
-        # Formatação da imagem
-        file_system = FileSystemStorage()
-        file_name = file_system.save(imagem.name, imagem)
-
-        # Salvando no banco de dados
-        Post.objects.create(titulo=titulo, text=texto, perfil=perfil, imagem=file_name)
+        except Exception:
+            titulo = request.POST.get('titulo')
+            texto = request.POST.get('texto')
+            perfil = request.user.perfil
+            Post.objects.create(titulo=titulo, text=texto, perfil=perfil)
 
     return redirect('minhas_postagens')
 
@@ -114,29 +119,35 @@ def excluir_postagem(request, id_postagem):
 
 @login_required(login_url='login')
 def alterar_perfil(request):
-    if request.method == 'POST':
-        imagem = request.FILES['imagemperfil']
-        file_system = FileSystemStorage()
-        file_name = file_system.save(imagem.name, imagem)
+    try:
+        if request.method == 'POST':
+            imagem = request.FILES['imagemperfil']
+            file_system = FileSystemStorage()
+            file_name = file_system.save(imagem.name, imagem)
 
-        perfil_logado = request.user.perfil
-        perfil_logado.imagem_perfil = file_name
-        perfil_logado.save()
-
-    return redirect('index')
+            perfil_logado = request.user.perfil
+            perfil_logado.imagem_perfil = file_name
+            perfil_logado.save()
+            
+            return redirect('index')
+    except:
+        return redirect('index')
 
 @login_required(login_url='login')
 def alterar_capa(request):
-    if request.method == 'POST':
-        imagem = request.FILES['imagemcapa']
-        file_system = FileSystemStorage()
-        file_name = file_system.save(imagem.name, imagem)
+    try:
+        if request.method == 'POST':
+            imagem = request.FILES['imagemcapa']
+            file_system = FileSystemStorage()
+            file_name = file_system.save(imagem.name, imagem)
 
-        perfil_logado = request.user.perfil
-        perfil_logado.imagem_capa = file_name
-        perfil_logado.save()
-
-    return redirect('index')
+            perfil_logado = request.user.perfil
+            perfil_logado.imagem_capa = file_name
+            perfil_logado.save()
+            
+            return redirect('index')
+    except:
+        return redirect('index')
 
 @login_required(login_url='login')
 def minhas_postagens(request):
