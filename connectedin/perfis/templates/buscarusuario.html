@@ -5,7 +5,6 @@
 
 <div>
     {% if encontrados %}
-    {% if encontrados.count > 0 %}
     <ul class="list-group full-w">
         {% for encontrado in encontrados %}
         {% if encontrado.id != user.perfil.id %}
@@ -22,13 +21,6 @@
         {% endif %}
         {% endfor %}
     </ul>
-    {% else %}
-    <div class="full-w card">
-        <div class="card-body">
-            <h2>Nenhum resultado encontrado</h2>
-        </div>
-    </div>
-    {% endif %}
 
     {% else %}
     <div class="full-w alert alert-warning text-center">

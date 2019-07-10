@@ -1,1 +1,2 @@
 1 - Gerencia de conexões
+2 - Alterar imagem de capa

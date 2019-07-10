@@ -15,11 +15,16 @@
 
     {% if timeline %}
         {% for post in timeline %}
-        <div class="card post-index my-3" style="max-width: 100%;">
+        <div class="card post-index my-4" style="max-width: 100%;">
             <div class="no-gutters">
-                <div class="card-header" style="background: url('{% static 'media/img/bg01.jpg' %}'); background-repeat: no-repeat;
-                            background-size: cover; background-position: center;">
-                    <img src="{% static 'media/img/user.png' %}" width="100" alt="Usuário" class="img-thumbnail">
+                <div class="card-header" style="{% if post.perfil.imagem_capa %} background: url('/media/{{ post.perfil.imagem_capa }}'); {% else %} background: url('{% static 'media/img/bg01.jpg' %}'); {% endif %} 
+                                                background-repeat: no-repeat;
+                                                background-size: cover; 
+                                                background-position: center;">
+                    <img src="{% if post.perfil.imagem_perfil %} /media/{{ post.perfil.imagem_perfil }} {% else %} {% static 'media/img/user.png' %} {% endif %}" 
+                            width="100" 
+                            alt="Usuário" 
+                            class="img-thumbnail">
                     <p class="text-white">{{ post.perfil.nome }}</p>
                 </div>
                 <div class="card-body">

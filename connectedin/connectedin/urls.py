@@ -24,8 +24,10 @@ urlpatterns = [
     path('encontrar/', views.buscar_usuario, name='buscar_usuario'),
     path('conexoes/', views.conexoes, name='conexoes'),
     path('alterarperfil/', views.alterar_perfil, name='alterar_perfil'),
+    path('alterarcapa/', views.alterar_capa, name='alterar_capa'),
     #Perfil Postagem,
     path('postagem/', views.postagem, name='postagem'),
+    path('minhaspostagem/', views.minhas_postagens, name='minhas_postagens'),
     path('excluirpostagem/<int:id_postagem>', views.excluir_postagem, name='excluir_postagem'),
 
     # Usuarios

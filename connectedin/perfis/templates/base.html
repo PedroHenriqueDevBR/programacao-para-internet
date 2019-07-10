@@ -12,7 +12,11 @@
     <link rel="stylesheet" href="{% static '/css/estilo.css' %}">
 </head>
 
-<body style="background: #CFD8DC;">
+<body style="{% if perfil_logado.imagem_capa %} background: url('/media/{{ perfil_logado.imagem_capa }}'); {% else %} background: #CFD8DC; {% endif %} 
+                background-repeat: no-repeat;
+                background-size: cover; 
+                background-position: center; 
+                background-attachment: fixed;">
     <div class="navbar-dark" style="background: #7CB342;">
         <nav class="navbar container navbar-expand-lg">
             <a class="navbar-brand" href="/">ConnectedIn</a>
@@ -51,21 +55,26 @@
         <div class="row container">
             <section class="col col-sm-12 col-md-3 py-3 opcoes-do-usuario">
                 <div class="card">
-                    <div class="card-header center-center" style="background: #7CB342;" 
-                    data-toggle="tooltip" data-placement="bottom" title="Alterar foto do perfil">
-                    
-                    <img src="{% if perfil_logado.imagem_perfil %} /media/{{ perfil_logado.imagem_perfil }}
-                        {% else %} {% static 'media/img/user.png' %} {% endif %}" 
-                        alt="Usuário" width="100%"
-                    class="img-fluid img-thumbnail"><br>
-                    <p class="text-white">{{ perfil_logado.nome }}</p>
+                    <div class="card-header center-center" 
+                    style="background: #7CB342;" 
+                    data-toggle="tooltip"
+                    data-placement="bottom" title="Alterar foto do perfil">
+
+                        <img src="{% if perfil_logado.imagem_perfil %} /media/{{ perfil_logado.imagem_perfil }}
+                        {% else %} {% static 'media/img/user.png' %} {% endif %}" alt="Usuário" width="100%"
+                            class="img-fluid img-thumbnail"><br>
+                        <p class="text-white">{{ perfil_logado.nome }}</p>
                     </div>
                     <div class="card-body">
                         <ul class="nav flex-column mt-3">
-                            <li class="nav-item"> <a class="nav-link" href="#">Meu perfil - Pendente</a> </li>
-                            <li class="nav-item"> <a class="nav-link" href="#">Minhas postagens - Pendente</a> </li>
+                            <li class="nav-item"> <a class="nav-link" href="" data-toggle="modal"
+                                    data-target="#alterarFotoPerfil">Alterar foto perfil</a> </li>
+                            <li class="nav-item"> <a class="nav-link" href="" data-toggle="modal"
+                                    data-target="#alterarFotoCapa">Alterar foto capa</a> </li>
+                            </li>
+                            <li class="nav-item"> <a class="nav-link" href="{% url 'minhas_postagens' %}">Minhas
+                                    postagens</a> </li>
                             <li class="nav-item"> <a class="nav-link" href="{% url 'conexoes' %}">Conexões</a> </li>
-                            <li class="nav-item"> <a class="nav-link" href="" data-toggle="modal" data-target="#alterarFoto">Alterar foto</a> </li>
                         </ul>
                     </div>
                 </div>
@@ -116,9 +125,9 @@
                             </p>
 
                             {% for convite in perfil_logado.convites_recebidos.all %}
-                            <li class="list-group-item">{{ convite.solicitante.nome }} <a
-                                    href="perfil/{{ convite.id }}/aceitar" class="float-right">Aceitar</a> <a
-                                    href="perfil/{{ convite.id }}/rejeitar" class="float-right">Rejeitar</a> </li>
+                            <li class="list-group-item full-w text-center">{{ convite.solicitante.nome }} <br>
+                                <a href="perfil/{{ convite.id }}/aceitar" class="float-center btn btn-success">Aceitar</a> <a
+                                    href="perfil/{{ convite.id }}/rejeitar" class="float-center btn btn-danger">Rejeitar</a> </li>
                             {% endfor %}
                         </ul>
                         <a href="#" class="btn btn-light full-w">Ver todos</a>
@@ -133,20 +142,22 @@
     </main>
 
 
-    <!-- Modal -->
-    <div class="modal fade" id="alterarFoto" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Modal imagem perfil -->
+    <div class="modal fade" id="alterarFotoPerfil" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header bg-secondary text-white">
-                    <h5 class="modal-title" >Alterar foto do perfil</h5>
+                    <h5 class="modal-title">Alterar foto do perfil</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span class="text-white" aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="{% url 'alterar_perfil' %}" method="POST" enctype="multipart/form-data">{% csrf_token %}
+                    <form action="{% url 'alterar_perfil' %}" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
                         <div class="form-group">
-                            <input name="imagemperfil" type="file" class="form-control-file" id="exampleFormControlFile1">
+                            <input name="imagemperfil" type="file" class="form-control-file"
+                                id="exampleFormControlFile1">
                         </div>
                         <button type="submit" class="btn btn-info full-w">Alterar</button>
                     </form>
@@ -155,6 +166,28 @@
         </div>
     </div>
 
+    <!-- Modal imagem capa -->
+    <div class="modal fade" id="alterarFotoCapa" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-secondary text-white">
+                    <h5 class="modal-title">Alterar foto de capa</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span class="text-white" aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="{% url 'alterar_capa' %}" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <input name="imagemcapa" type="file" class="form-control-file" id="exampleFormControlFile1">
+                        </div>
+                        <button type="submit" class="btn btn-info full-w">Alterar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

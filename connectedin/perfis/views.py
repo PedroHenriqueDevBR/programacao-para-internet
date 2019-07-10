@@ -57,9 +57,7 @@ def postagem(request):
         # Salvando no banco de dados
         Post.objects.create(titulo=titulo, text=texto, perfil=perfil, imagem=file_name)
 
-        return redirect('index')
-
-    return render(request, 'postagem.html')
+    return redirect('minhas_postagens')
 
 @login_required(login_url='login')
 def convidar(request, perfil_id):
@@ -114,6 +112,7 @@ def excluir_postagem(request, id_postagem):
     postagem.delete()
     return redirect('index')
 
+@login_required(login_url='login')
 def alterar_perfil(request):
     if request.method == 'POST':
         imagem = request.FILES['imagemperfil']
@@ -125,6 +124,28 @@ def alterar_perfil(request):
         perfil_logado.save()
 
     return redirect('index')
+
+@login_required(login_url='login')
+def alterar_capa(request):
+    if request.method == 'POST':
+        imagem = request.FILES['imagemcapa']
+        file_system = FileSystemStorage()
+        file_name = file_system.save(imagem.name, imagem)
+
+        perfil_logado = request.user.perfil
+        perfil_logado.imagem_capa = file_name
+        perfil_logado.save()
+
+    return redirect('index')
+
+@login_required(login_url='login')
+def minhas_postagens(request):
+    dados = {}
+    dados['perfis'] = Perfil.objects.all()
+    dados['perfil_logado'] = request.user.perfil
+    dados['timeline'] = selecionar_minhas_postagens(request) 
+
+    return render(request, 'index.html', dados)
 
 # #
 # # Métodos auxiliares
@@ -138,3 +159,7 @@ def selecionar_posts_de_amigos(request):
     posts.sort(key=lambda x: x.data_postagem, reverse=True)
     return posts
 
+def selecionar_minhas_postagens(request):
+    posts = list(request.user.perfil.posts.all())
+    posts.sort(key=lambda x: x.data_postagem, reverse=True)
+    return posts
