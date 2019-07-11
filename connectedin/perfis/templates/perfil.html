@@ -17,7 +17,7 @@
                 background-size: cover; 
                 background-position: center; 
                 background-attachment: fixed;">
-	<div class="navbar-dark" style="background: #7CB342;">
+	<div class="navbar-dark" style="background: #F4511E;">
 		<nav class="navbar container navbar-expand-lg">
 			<a class="navbar-brand" href="/">ConnectedIn</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -55,7 +55,7 @@
 		<div class="row container">
 			<section class="col col-sm-12 col-md-3 py-3 opcoes-do-usuario">
 				<div class="card">
-					<div class="card-header center-center" style="background: #7CB342;" data-toggle="tooltip"
+					<div class="card-header center-center" style="background: #F4511E;" data-toggle="tooltip"
 						data-placement="bottom" title="Alterar foto do perfil">
 
 						<img src="{% if perfil.imagem_perfil %} /media/{{ perfil.imagem_perfil }}
@@ -65,19 +65,19 @@
 					</div>
 					<div class="card-body">
 						{% if ja_eh_contato %}
-							<a href="{% url 'desfazer' perfil.id %}">Desfazer amizade</a>
+							<a href="{% url 'desfazer' perfil.id %}">Desfazer amizade</a><br>
 
-							{% if perfil.usuario.is_superuser %}
+							{% if perfil_logado.usuario.is_superuser %}
 								{% if perfil.usuario.is_superuser %}
-									<a href="{% url 'retirar_superuser' perfil.id %}">Retirar superuser</a>
+									<a href="{% url 'retirar_superuser' perfil.id %}">Retirar superuser</a><br>
 								{% else %}
-									<a href="{% url 'tornar_superuser' perfil.id %}">Tornar superuser</a>
+									<a href="{% url 'tornar_superuser' perfil.id %}">Tornar superuser</a><br>
 								{% endif %}
 
 								{% if perfil.usuario.is_active %}
-									<a href="{% url 'bloquear_user' perfil.id %}">Bloquear usuário</a>
+									<a href="{% url 'bloquear_user' perfil.id %}">Bloquear usuário</a><br>
 								{% else %}
-									<a href="{% url 'desbloquear_user' perfil.id %}">Desbloquear usuário</a>
+									<a href="{% url 'desbloquear_user' perfil.id %}">Desbloquear usuário</a><br>
 								{% endif %}
 							{% endif %}
 
@@ -135,7 +135,7 @@
 
 			<aside class="col col-sm-12 col-md-3 py-3">
 				<div class="bg-white card">
-					<div class="card-header text-white" style="background: #7CB342;">
+					<div class="card-header text-white" style="background: #F4511E;">
 						<h3 class="text-center">Convites enviados</h3>
 					</div>
 					<div class="card-body px-0 py-0">
@@ -160,7 +160,7 @@
 				</div>
 
 				<div class="mt-3 card bg-white">
-					<div class="card-header text-white" style="background: #7CB342;">
+					<div class="card-header text-white" style="background: #F4511E;">
 						<h3 class="text-center">Convites Recebidos</h3>
 					</div>
 					<div class="card-body px-0 py-0">
