@@ -25,6 +25,8 @@ def exibir_perfil(request, perfil_id):
     dados['perfil'] = Perfil.objects.get(id=perfil_id)
     dados['perfil_logado'] = perfil_logado = request.user.perfil
     dados['ja_eh_contato'] = dados['perfil_logado'].contatos.filter(id=dados['perfil'].id)
+    dados['timeline'] = dados['perfil'].posts.all() 
+
     return render(request, 'perfil.html', dados)
 
 @login_required(login_url='login')
