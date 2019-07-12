@@ -43,7 +43,10 @@ class LoginUsuarioView(View):
         user = authenticate(request, username=username, password=password)
 
         if user is None:
-            messages.add_message(request, messages.INFO, 'Usuário não cadastrado.')
+            if User.objects.filter(email=username):
+                messages.add_message(request, messages.INFO, 'Usuário bloqueado.')
+            else:
+                messages.add_message(request, messages.INFO, 'Usuário não cadastrado.')
         else:
             login(request, user)
             return redirect('index')
@@ -113,6 +116,13 @@ def bloquear_usuario(request, id_perfil):
         user.is_active = False
         user.save()
     return redirect('/perfil/{}/'.format(id_perfil))
+
+
+def bloquear_meu_usuario(request):
+    user = request.user
+    user.is_active = False
+    user.save()
+    return redirect('deslogar')
 
 
 def desbloquear_usuario(request, id_perfil):

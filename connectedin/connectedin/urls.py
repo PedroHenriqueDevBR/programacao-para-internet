@@ -27,6 +27,7 @@ urlpatterns = [
     path('alterarcapa/', views.alterar_capa, name='alterar_capa'),
     #Perfil Postagem,
     path('postagem/', views.postagem, name='postagem'),
+    path('deletepostagem/<int:id_postagem>', views.delete_postagem, name='delete_postagem'),
     path('minhaspostagem/', views.minhas_postagens, name='minhas_postagens'),
     path('excluirpostagem/<int:id_postagem>', views.excluir_postagem, name='excluir_postagem'),
 
@@ -38,8 +39,8 @@ urlpatterns = [
     path('tornarsuperuser/<int:id_perfil>', view_usuario.tornar_superuser, name='tornar_superuser'),
     path('retirarsuperuser/<int:id_perfil>', view_usuario.retirar_superuser, name='retirar_superuser'),
     path('bloquearuser/<int:id_perfil>', view_usuario.bloquear_usuario, name='bloquear_user'),
+    path('bloquearmeuuser/', view_usuario.bloquear_meu_usuario, name='bloquear_meu_user'),
     path('desbloquearuser/<int:id_perfil>', view_usuario.desbloquear_usuario, name='desbloquear_user'),
-
 
 ]
 

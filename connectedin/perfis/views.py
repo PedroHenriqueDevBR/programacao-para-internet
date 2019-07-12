@@ -57,32 +57,50 @@ def postagem(request):
             file_name = file_system.save(imagem.name, imagem)
             # Salvando no banco de dados
             Post.objects.create(titulo=titulo, text=texto, perfil=perfil, imagem=file_name)
+            messages.add_message(request, messages.INFO, 'Postagem publicada.')
 
         except Exception:
             titulo = request.POST.get('titulo')
             texto = request.POST.get('texto')
             perfil = request.user.perfil
             Post.objects.create(titulo=titulo, text=texto, perfil=perfil)
+            messages.add_message(request, messages.INFO, 'Postagem publicada.')
 
     return redirect('minhas_postagens')
+
+@login_required(login_url='login')
+def delete_postagem(request, id_postagem):
+    post = Post.objects.get(id=id_postagem)
+
+    if post.perfil == request.user.perfil or request.user.is_superuser:
+        post.delete()
+        messages.add_message(request, messages.INFO, 'Post deletado com sucesso!')
+
+    return redirect('index')
+    
 
 @login_required(login_url='login')
 def convidar(request, perfil_id):
     perfil_a_convidar = Perfil.objects.get(id=perfil_id)
     perfil_logado = request.user.perfil
     perfil_logado.convidar(perfil_a_convidar)
+
+    messages.add_message(request, messages.INFO, 'Solicitação de amizade enviada para {}.'.format(perfil_a_convidar.nome))
+
     return redirect('index')
 
 @login_required(login_url='login')
 def aceitar(request, convite_id):
-	convite = Convite.objects.get(id=convite_id)
-	convite.aceitar()
-	return redirect('index')
+    convite = Convite.objects.get(id=convite_id)
+    messages.add_message(request, messages.INFO, 'Convite aceito para {}.'.format(convite.solicitante))
+    convite.aceitar()
+    return redirect('index')
 
 @login_required(login_url='login')
 def rejeitar(request, convite_id):
     convite = Convite.objects.get(id=convite_id)
     convite.rejeitar()
+    messages.add_message(request, messages.INFO, 'Solicitação cancelada.')
     return redirect('index')
 
 @login_required(login_url='login')
@@ -90,6 +108,7 @@ def desfazer_amizade(request, perfil_id):
     amizade = Perfil.objects.get(id=perfil_id)
     perfil_logado = request.user.perfil
     perfil_logado.desfazer_amizade(amizade)
+    messages.add_message(request, messages.INFO, 'Você e {} não estão mais conectados.'.format(amizade.nome))
     return redirect('index')
 
 @login_required(login_url='login')
@@ -104,6 +123,12 @@ def buscar_usuario(request):
     dados = {}
     dados['encontrados'] = encontrados
     dados['perfil_logado'] = request.user.perfil
+    
+    word = 'perfil'
+    if len(dados['encontrados']) > 1: 
+        word = 'perfis'
+    messages.add_message(request, messages.INFO, 'Foram encontrados {} {}'.format(len(dados['encontrados']), word))
+    
     return render(request, 'buscarusuario.html', dados)
 
 @login_required(login_url='login')
@@ -117,6 +142,7 @@ def conexoes(request):
 def excluir_postagem(request, id_postagem):
     postagem = Post.objects.get(id=id_postagem)
     postagem.delete()
+    messages.add_message(request, messages.INFO, 'Postagem deletada')
     return redirect('index')
 
 @login_required(login_url='login')
