@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Dogs</title>
+
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        html, body {
+            width: 100%;
+            height: 100%;
+        }
+        .dog {
+            width: 100%;
+            height: 100%;
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="dog"></div>
+
+    <script>
+        
+        function carregaImagem(){
+            console.log('Passei aqui')
+            const xhttp = new XMLHttpRequest()
+
+            url = 'https://dog.ceo/api/breeds/image/random'
+            xhttp.open('GET', url)
+
+            xhttp.onreadystatechange = () => {
+                if (xhttp.status == 200) {
+                    const dados = JSON.parse(xhttp.responseText)
+                    const elem = document.getElementsByClassName('dog')[0]
+                    elem.style.background = 'url("' + dados.message + '")'
+                    elem.style.backgroundRepeat = 'no-repeat'
+                    elem.style.backgroundSize = 'cover'
+                    
+                } else {
+                    console.log('Erro ao obter dados')
+                }
+            }
+
+            xhttp.send()
+        }
+
+        setInterval(function() {
+            carregaImagem()
+        }, 6000)
+
+    </script>
+
+</body>
+</html>
