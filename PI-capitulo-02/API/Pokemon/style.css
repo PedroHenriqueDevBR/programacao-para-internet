@@ -1,0 +1,15 @@
+#img-pokemon {
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.esconde {
+    opacity: 0;
+}
+
+.mostra {
+    opacity: 1;
+}
