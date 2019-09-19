@@ -23,5 +23,6 @@ Programação front-end, foco em frameworks como React
 
 ## Links
 
-[Pasta no google drive](https://drive.google.com/drive/folders/1-UY3I8MjhhPsXnAygyA3FGLc1FuBKpWH)
-[Atividade django](https://drive.google.com/file/d/1m8zi_sNV-WxgoMSgJBLK_G6ybmFdbyEQ/view)
+[Pasta no google drive capitulo 1](https://drive.google.com/drive/folders/1-UY3I8MjhhPsXnAygyA3FGLc1FuBKpWH)
+
+[Pasta no google drive capitulo 2](https://drive.google.com/drive/folders/1GCKSVXMMiTQO2pVaTWF3WNi4P99p8iIK)
