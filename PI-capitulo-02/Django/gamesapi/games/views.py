@@ -24,14 +24,19 @@ def games_list(request):
 @api_view(['GET', 'PUT', 'DELETE'])
 def games_update(request, id):
     try:
-        if request.method == 'GET':
-            game = Game.objects.filter(id=id)
-            games_serializer = GameSerializer(game, many=True)
-            return Response(games_serializer.data)
+        game = Game.objects.get(id=id)
     except Exception:
-        return Response('Game não cadastrado', status.HTTP_404_NOT_FOUND)
+        return Response(status.HTTP_404_NOT_FOUND)
 
-
-@api_view(['GET'])
-def game_detail(request):
-    pass
+    if request.method == 'GET':
+        games_serializer = GameSerializer(game)
+        return Response(games_serializer.data)
+    elif request.method == 'PUT':
+        games_serializer = GameSerializer(game, data=request.data)
+        if games_serializer.is_valid():
+            games_serializer.save()
+            return Response(games_serializer.data)
+        return Response(games_serializer.erros, status=status.HTTP_400_BAD_REQUEST)
+    elif request.method == 'DELETE':
+        game.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
