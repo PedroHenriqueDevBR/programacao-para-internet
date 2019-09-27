@@ -36,7 +36,8 @@ def games_update(request, id):
         if games_serializer.is_valid():
             games_serializer.save()
             return Response(games_serializer.data)
-        return Response(games_serializer.erros, status=status.HTTP_400_BAD_REQUEST)
+        return Response(games_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     elif request.method == 'DELETE':
+
         game.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
