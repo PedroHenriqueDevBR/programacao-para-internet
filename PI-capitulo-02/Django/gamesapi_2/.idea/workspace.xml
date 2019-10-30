@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="9fe12ce0-3c32-4b14-b8e6-c99c8270d8a4" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/gamesapi/games/serializer.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gamesapi/games/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gamesapi/games/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/gamesapi/games/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gamesapi/games/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/gamesapi/games/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gamesapi/gamesapi/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/gamesapi/gamesapi/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gamesapi/gamesapi/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/gamesapi/gamesapi/urls.py" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="ProjectId" id="1StaFcvI2cweY0Ycps2m4ZUcari" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9fe12ce0-3c32-4b14-b8e6-c99c8270d8a4" name="Default Changelist" comment="" />
+      <created>1572385242840</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1572385242840</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
