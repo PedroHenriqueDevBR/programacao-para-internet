@@ -11,7 +11,8 @@ urlpatterns = [
     path('post/<int:pk>', PostDetail.as_view(), name=PostDetail.name),
     path('comment/', CommentList.as_view(), name=CommentList.name),
     path('comment/<int:pk>', CommentDetail.as_view(), name=CommentDetail.name),
-    path('', ApiRoot.as_view(), name=ApiRoot.name)
+    path('', ApiRoot.as_view(), name=ApiRoot.name),
+    path('import/', ImportData.as_view(), name=ImportData.name)
 ]
 
 
