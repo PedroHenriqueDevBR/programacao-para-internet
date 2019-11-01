@@ -18,18 +18,32 @@ class CommentSerialize(HyperlinkedModelSerializer):
 
 
 class PostSerialize(HyperlinkedModelSerializer):
-    # user = serializers.SlugRelatedField(Profile.objects.all(), slug_field='name')
-    # comments = CommentSerialize(many=True, read_only=True)
 
     class Meta:
         model = Post
-        fields = ['title', 'body', 'user', 'comments']
+        fields = ['title', 'body', 'user']
 
 
 class ProfileSerialize(HyperlinkedModelSerializer):
+
+    class Meta:
+        model = Profile
+        fields = ['pk', 'name', 'email', 'address']
+
+
+# classes da atividade
+class ProfilePostSerialize(HyperlinkedModelSerializer):
     # address = serializers.SlugRelatedField(Address.objects.all(), slug_field='street')
     posts = PostSerialize(many=True, read_only=True)
 
     class Meta:
         model = Profile
         fields = ['pk', 'name', 'email', 'address', 'posts']
+
+
+class PostCommentsSerialize(HyperlinkedModelSerializer):
+    comments = CommentSerialize(many=True, read_only=True)
+
+    class Meta:
+        model = Post
+        fields = ['title', 'body', 'user', 'comments']
