@@ -17,8 +17,14 @@ urlpatterns = [
     path('import/', ImportData.as_view(), name=ImportData.name),
     path('profile-posts/', ProfilePostList.as_view(), name=ProfilePostList.name),
     path('profile-posts/<int:pk>', ProfilePostDetail.as_view(), name=ProfilePostDetail.name),
+
     path('post-comments/', PostCommentsList.as_view(), name=PostCommentsList.name),
     path('post-comments/<int:pk>', PostCommentsDetail.as_view(), name=PostCommentsDetail.name),
+
+    path('post/<int:pk>/comments/', PostCommentsDetail.as_view(), name=PostCommentsDetail.name), # view já estava feita na linha 22
+    path('post/<int:pk_post>/comments/<int:pk_comment>', PostCommentsUpdateList.as_view(), name=PostCommentsUpdateList.name),
+    path('profile-report/', ProfilePostList.as_view(), name=ProfileReport.name),
+    path('profile-report/<int:pk>', ProfileReport.as_view(), name=ProfileReport.name),
 ]
 
 

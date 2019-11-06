@@ -47,3 +47,10 @@ class PostCommentsSerialize(HyperlinkedModelSerializer):
     class Meta:
         model = Post
         fields = ['title', 'body', 'user', 'comments']
+
+
+class PostCommentsUpdateSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Comment
+        fields = ('name', 'email', 'body', 'post')

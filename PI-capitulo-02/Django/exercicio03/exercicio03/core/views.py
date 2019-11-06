@@ -4,6 +4,7 @@ from .serializer import *
 from rest_framework.response import Response
 from rest_framework.reverse import reverse
 from rest_framework import status
+from rest_framework.views import APIView
 import json
 
 
@@ -55,21 +56,94 @@ class CommentDetail(generics.ListCreateAPIView):
     name = 'comment-detail'
 
 
-class ApiRoot(generics.GenericAPIView):
-    name = 'api-root'
-
-    def get(self, request, *args, **kwargs):
-        return Response({
-            'profile': reverse(ProfileList.name, request=request),
-            'address': reverse(AddressList.name, request=request),
-            'posts': reverse(PostList.name, request=request),
-            'comments': reverse(CommentList.name, request=request),
-            'profile-posts': reverse(ProfilePostList.name, request=request),
-            'posts-comments': reverse(PostCommentsList.name, request=request),
-        })
-
-
 # Classes da atividade
+
+class ProfilePostList(generics.ListCreateAPIView):
+    queryset = Profile.objects.all()
+    serializer_class = ProfilePostSerialize
+    name = 'profile-post-list'
+
+
+class ProfilePostDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Profile.objects.all()
+    serializer_class = ProfilePostSerialize
+    name = 'profile-post-detail'
+
+
+class PostCommentsList(generics.ListAPIView):
+    queryset = Post.objects.all()
+    serializer_class = PostCommentsSerialize
+    name = 'post-comments-list'
+
+
+class PostCommentsDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Post.objects.all()
+    serializer_class = PostCommentsSerialize
+    name = 'post-comments-detail'
+
+
+class PostCommentsUpdateList(APIView):
+    name = 'post-comments-update-list'
+
+    def get(self, request, pk_post, pk_comment):
+        try:
+            post = Post.objects.get(pk=pk_post)
+            comment = post.comments.get(pk=pk_comment)
+        except Exception:
+            return Response(status.HTTP_404_NOT_FOUND)
+
+        comment_serializer = PostCommentsUpdateSerializer(comment)
+        return Response(comment_serializer.data)
+
+    def put(self, request, pk_post, pk_comment):
+        try:
+            post = Post.objects.get(pk=pk_post)
+            comment = post.comments.get(pk=pk_comment)
+        except Exception:
+            return Response(status.HTTP_404_NOT_FOUND)
+
+        comment_serializer = PostCommentsUpdateSerializer(comment, data=request.data)
+        if comment_serializer.is_valid():
+            comment_serializer.save()
+            return Response(comment_serializer.data)
+        return Response(comment_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, pk_post, pk_comment):
+        try:
+            post = Post.objects.get(pk=pk_post)
+            comment = post.comments.get(pk=pk_comment)
+        except Exception:
+            try:
+                post = Post.objects.get(pk=pk_post)
+                comment = post.comments.get(pk=pk_comment)
+            except Exception:
+                return Response(status.HTTP_404_NOT_FOUND)
+
+            comment.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class ProfileReport(APIView):
+    name = 'profile-report-list'
+
+    def get(self, request, pk):
+        try:
+            profile = Profile.objects.get(pk=pk)
+        except Exception:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+
+        posts = profile.posts.all()
+        comments = []
+        for post in posts:
+            comments.extend(post.comments.all())
+
+        return Response({
+            'pk': pk,
+            'name': profile.name,
+            'total_posts': len(posts),
+            'total_comments': len(comments)
+        }, status=status.HTTP_200_OK)
+
 
 class ImportData(generics.GenericAPIView):
     name = 'import_data'
@@ -102,38 +176,18 @@ class ImportData(generics.GenericAPIView):
             Comment.objects.create(name=comment['name'], email=comment['email'], body=comment['body'], post=post)
 
 
-class ProfilePostList(generics.ListCreateAPIView):
-    queryset = Profile.objects.all()
-    serializer_class = ProfilePostSerialize
-    name = 'profile-post-list'
+class ApiRoot(generics.GenericAPIView):
+    name = 'api-root'
 
-
-class ProfilePostDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Profile.objects.all()
-    serializer_class = ProfilePostSerialize
-    name = 'profile-post-detail'
-
-
-# class PostCommentsList(generics.GenericAPIView):
-#     name = 'post-comments-list'
-#
-#     def get(self, request, *args, **kwargs):
-#         posts = Post.objects.all()
-#         for post in posts:
-#             post.comments.set(Comment.objects.filter(post=post))
-#
-#         return Response({
-#             'posts': posts.__dict__()
-#         }, status=status.HTTP_200_OK)
-
-
-class PostCommentsList(generics.ListAPIView):
-    queryset = Post.objects.all()
-    serializer_class = PostCommentsSerialize
-    name = 'post-comments-list'
-
-
-class PostCommentsDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Post.objects.all()
-    serializer_class = PostCommentsSerialize
-    name = 'post-comments-detail'
+    def get(self, request, *args, **kwargs):
+        return Response({
+            'profile': reverse(ProfileList.name, request=request),
+            'address': reverse(AddressList.name, request=request),
+            'posts': reverse(PostList.name, request=request),
+            'comments': reverse(CommentList.name, request=request),
+            'profile-posts': reverse(ProfilePostList.name, request=request),
+            'posts-comments-all': reverse(PostCommentsList.name, request=request),
+            # 'posts-comments-list': reverse(PostCommentsDetail.name, request=request),
+            # 'posts-comments-list-update': reverse(PostCommentsUpdateList.name, request=request),
+            'profile-report': reverse(ProfileReport.name, request=request),
+        })
