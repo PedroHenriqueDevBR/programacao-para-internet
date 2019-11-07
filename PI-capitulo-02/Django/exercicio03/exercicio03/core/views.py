@@ -187,7 +187,7 @@ class ApiRoot(generics.GenericAPIView):
             'comments': reverse(CommentList.name, request=request),
             'profile-posts': reverse(ProfilePostList.name, request=request),
             'posts-comments-all': reverse(PostCommentsList.name, request=request),
-            # 'posts-comments-list': reverse(PostCommentsDetail.name, request=request),
-            # 'posts-comments-list-update': reverse(PostCommentsUpdateList.name, request=request),
+            'posts-comments-list': 'http://localhost:8000/post/1/comments/',
+            'posts-comments-list-update': 'http://localhost:8000/post/1/comments/1',
             'profile-report': reverse(ProfileReport.name, request=request),
         })
