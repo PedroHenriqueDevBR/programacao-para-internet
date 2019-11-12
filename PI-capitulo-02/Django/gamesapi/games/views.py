@@ -1,43 +1,99 @@
-from django.shortcuts import render
-from rest_framework import status
-from rest_framework.decorators import api_view
+"""
+Book: Building RESTful Python Web Services
+Chapter 2: Working with class based views and hyperlinked APIs in Django
+Author: Gaston C. Hillar - Twitter.com/gastonhillar
+Publisher: Packt Publishing Ltd. - http://www.packtpub.com
+"""
+from django.contrib.auth.models import User
+from rest_framework import status, generics, permissions
 from rest_framework.response import Response
-from games.models import Game
-from games.serializers import GameSerializer
+from rest_framework.reverse import reverse
+from rest_framework.throttling import ScopedRateThrottle
 
-# Create your views here.
-@api_view(['GET', 'POST'])
-def games_list(request):
-    if request.method == 'GET':
-        games = Game.objects.all()
-        games_serializer = GameSerializer(games, many=True)
-        return Response(games_serializer.data)
-    
-    elif request.method == 'POST':
-        games_serializer = GameSerializer(data=request.data)
-        if games_serializer.is_valid():
-            games_serializer.save()
-            return Response(games_serializer.data, status=status.HTTP_201_CREATED)
-        return Response(games_serializer.errors, status.HTTP_400_BAD_REQUEST)
+from games.permissions import IsOwnerOrReadOnly
+from .models import Game, GameCategory, Player, Score
+from .serializers import GameSerializer, GameCategorySerializer, PlayerSerializer, ScoreSerializer, UserSerializer
 
 
-@api_view(['GET', 'PUT', 'DELETE'])
-def games_update(request, id):
-    try:
-        game = Game.objects.get(id=id)
-    except Exception:
-        return Response(status.HTTP_404_NOT_FOUND)
+class GameList(generics.ListCreateAPIView):
+    queryset = Game.objects.all()
+    serializer_class = GameSerializer
+    name = 'game-list'
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly)
 
-    if request.method == 'GET':
-        games_serializer = GameSerializer(game)
-        return Response(games_serializer.data)
-    elif request.method == 'PUT':
-        games_serializer = GameSerializer(game, data=request.data)
-        if games_serializer.is_valid():
-            games_serializer.save()
-            return Response(games_serializer.data)
-        return Response(games_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    elif request.method == 'DELETE':
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)
 
-        game.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+
+class GameDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Game.objects.all()
+    serializer_class = GameSerializer
+    name = 'game-detail'
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly)
+
+
+class GameCategoryList(generics.ListCreateAPIView):
+    queryset = GameCategory.objects.all()
+    serializer_class = GameCategorySerializer
+    name = 'gamecategory-list'
+    permission_classes = (permissions.IsAuthenticated,)
+    throttle_scope = 'game-categories'
+    throttle_classes = (ScopedRateThrottle,)
+
+class GameCategoryDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = GameCategory.objects.all()
+    serializer_class = GameCategorySerializer
+    name = 'gamecategory-detail'
+    throttle_scope = 'game-categories'
+    throttle_classes = (ScopedRateThrottle,)
+
+
+class PlayerList(generics.ListCreateAPIView):
+    queryset = Player.objects.all()
+    serializer_class = PlayerSerializer
+    name = 'player-list'
+    permission_classes = (permissions.IsAuthenticated)
+
+
+class PlayerDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Player.objects.all()
+    serializer_class = PlayerSerializer
+    name = 'player-detail'
+
+
+class ScoreList(generics.ListCreateAPIView):
+    queryset = Score.objects.all()
+    serializer_class = ScoreSerializer
+    name = 'score-list'
+
+
+class ScoreDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Score.objects.all()
+    serializer_class = ScoreSerializer
+    name = 'score-detail'
+
+
+class UserList(generics.ListCreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    name = 'user-list'
+
+
+class UserDetail(generics.ListCreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    name = 'user-detail'
+
+
+class ApiRoot(generics.GenericAPIView):
+
+    name = 'api-root'
+
+    def get(self, request,*args, **kwargs):
+        return Response({
+            'players': reverse(PlayerList.name, request=request),
+            'game-categories': reverse(GameCategoryList.name, request=request),
+            'games': reverse(GameList.name, request=request),
+            'scores': reverse(ScoreList.name, request=request),
+            'users': reverse(UserList.name, request=request),
+        })

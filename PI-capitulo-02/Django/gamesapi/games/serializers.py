@@ -1,21 +1,60 @@
+from django.contrib.auth.models import User
 from rest_framework import serializers
-from games.models import Game
-from datetime import datetime
 
 
-class GameSerializer(serializers.ModelSerializer):
+from .models import Game, GameCategory, Player, Score
+
+
+class GameSerializer(serializers.HyperlinkedModelSerializer):
+    owner = serializers.ReadOnlyField(source= 'owner.username')
+    game_category = serializers.SlugRelatedField(queryset=GameCategory.objects.all(),                                                 slug_field='name')
+
     class Meta:
         model = Game
-        fields = ('id', 'name', 'release_date', 'game_category', 'created')
+        fields = (
+            'url',
+            'owner',
+            'game_category',
+            'name',
+            'release_date',
+            'played'
+        )
 
-    def validate_name(self, value):
-        game = Game.objects.filter(name=value)
-        if game:
-            raise serializers.ValidationError("Não pode ter dois jogos com o mesmo nome.")
-        return value
 
-    def validate_delete(self, game):
-        if game.release_date >= datetime.now():
-            return True
-        else:
-            raise serializers.ValidationError('Impossível excluir game já lançado')
+class GameCategorySerializer(serializers.HyperlinkedModelSerializer):
+
+    class Meta:
+        model = GameCategory
+        fields = ('url', 'pk', 'name', 'games')
+
+
+class ScoreSerializer(serializers.HyperlinkedModelSerializer):
+
+    game = serializers.SlugRelatedField(queryset=Game.objects.all(), slug_field='name')
+    player = serializers.SlugRelatedField(queryset=Player.objects.all(), slug_field='name')
+
+    class Meta:
+        model = Score
+        fields = ('url', 'pk', 'score', 'score_date', 'player', 'game')
+
+
+class PlayerSerializer(serializers.HyperlinkedModelSerializer):
+    scores = ScoreSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Player
+        fields = ('url', 'name', 'gender', 'scores')
+
+
+class UserGameSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Game
+        fields = ('url', 'name')
+
+
+class UserSerializer(serializers.HyperlinkedModelSerializer):
+    games = UserGameSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = User
+        fields = ('url', 'pk', 'username', 'games')
