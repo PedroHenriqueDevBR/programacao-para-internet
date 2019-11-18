@@ -2,43 +2,30 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="270c76bd-5b51-4564-a755-1983d2cbfbb9" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../../gamesapi/.idea/gamesapi.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../gamesapi/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../gamesapi/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../gamesapi/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../gamesapi/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../gamesapi/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/exercicio03.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/admin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/apps.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/models.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/serializer.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/tests.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/urls.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/views.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/exercicio03/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/exercicio03/settings.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/exercicio03/urls.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/exercicio03/wsgi.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/manage.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../testes/db.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../testes/import_json.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../../gamesapi/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../gamesapi/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../gamesapi/games/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../gamesapi/games/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../gamesapi/games/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../gamesapi/games/apps.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../gamesapi/games/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../gamesapi/games/migrations/0001_initial.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../gamesapi/games/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../gamesapi/games/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../gamesapi/games/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../gamesapi/games/serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../gamesapi/games/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../gamesapi/games/tests.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../gamesapi/games/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../gamesapi/games/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../gamesapi/gamesapi/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../gamesapi/gamesapi/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../gamesapi/gamesapi/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../gamesapi/gamesapi/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../gamesapi/gamesapi/wsgi.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../gamesapi/gamesapi/wsgi.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../gamesapi/manage.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../gamesapi/manage.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../gamesapi_2/.idea/gamesapi_2.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../gamesapi_2/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../gamesapi_2/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../gamesapi_2/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../gamesapi_2/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../gamesapi_2/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../gamesapi_2/gamesapi/games/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../gamesapi_2/gamesapi/games/admin.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../gamesapi_2/gamesapi/games/apps.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../gamesapi_2/gamesapi/games/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../gamesapi_2/gamesapi/games/migrations/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../gamesapi_2/gamesapi/games/models.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../gamesapi_2/gamesapi/games/serializer.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../gamesapi_2/gamesapi/games/tests.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../gamesapi_2/gamesapi/games/urls.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../gamesapi_2/gamesapi/games/views.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../gamesapi_2/gamesapi/gamesapi/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../gamesapi_2/gamesapi/gamesapi/settings.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../gamesapi_2/gamesapi/gamesapi/urls.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../gamesapi_2/gamesapi/gamesapi/wsgi.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../gamesapi_2/gamesapi/manage.py" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -52,7 +39,7 @@
   <component name="ProjectId" id="1TJ4m41bSUJPzhff4w3y77NfXsW" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../gamesapi" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../../API-execicio3-PI" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
